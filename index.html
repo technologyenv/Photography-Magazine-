@@ -19,20 +19,21 @@
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
             overflow-x: hidden;
-            display: flex; flex-direction: column; align-items: center; /* توسيط الموقع */
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .page-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
-
-        /* واجهة الترحيب - التصميم الجديد */
+        /* واجهة الترحيب الكاملة بالتصميم المختار */
         .welcome-screen {
             width: 100%; height: 100vh;
-            background: #e5d1b1; /* لون محايد يتماشى مع التصميم */
+            background: #e5d1b1;
             display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .welcome-screen img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .welcome-screen img { 
+            width: 100%; height: 100%; 
+            object-fit: contain; /* لضمان ظهور الصورة كاملة دون قص */
+        }
 
-        /* الهيرو */
         .hero {
             width: 100%; padding: 60px 20px;
             background: linear-gradient(rgba(27, 41, 75, 0.85), rgba(27, 41, 75, 0.85)), 
@@ -42,7 +43,6 @@
         }
         .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: 3.5rem; margin: 0; }
 
-        /* الأقسام والمحتوى */
         .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 20px 0; }
 
         .section-header {
@@ -55,7 +55,6 @@
             color: var(--vintage-gold); font-size: 2.8rem; font-family: 'Aref Ruqaa', serif;
         }
 
-        /* الكروت والفريم الموحد */
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         
         .flip-card { height: 500px; perspective: 1000px; cursor: pointer; }
@@ -70,24 +69,19 @@
         }
         .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
 
-        /* منع أكل الصور وضمان الفريم الموحد */
-        .card-face img {
-            width: 100%; height: 80%;
-            object-fit: contain; /* عشان الصورة تظهر كاملة */
-            background: #f9f9f9;
-        }
+        .card-face img { width: 100%; height: 80%; object-fit: contain; background: #f9f9f9; }
+        
         .label {
             height: 20%; display: flex; flex-direction: column; align-items: center; justify-content: center;
             background: var(--van-gogh-blue); color: var(--vintage-gold); padding: 5px; text-align: center;
         }
-        .label .school-info { font-size: 0.9rem; color: #fff; margin-top: 3px; }
+        .label .school-info { font-size: 0.9rem; color: #fff; margin-top: 3px; line-height: 1.2; }
 
         .desc-text {
             background: #fff; padding: 20px; margin: 20px 0 40px;
             border-right: 6px solid var(--vintage-gold); font-size: 1.2rem;
         }
 
-        /* الخاتمة وصورة الدائرة */
         .footer-section {
             width: 100%; background: var(--van-gogh-blue); color: #fff;
             padding: 60px 20px; text-align: center; border-top: 5px solid var(--vintage-gold);
@@ -95,43 +89,38 @@
         .profile-circle {
             width: 220px; height: 220px; border-radius: 50%;
             border: 5px solid var(--vintage-gold); object-fit: cover;
-            margin: 0 auto 20px; display: block; box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            margin: 0 auto 20px; display: block;
         }
-        .yomna-title { font-size: 2.5rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
-        .thanks { font-size: 1.3rem; max-width: 600px; margin: 15px auto; line-height: 1.6; font-style: italic; }
+        .yomna-title { font-size: 2.5rem; color: var(--vintage-gold); }
 
-        footer { background: #070d1a; color: #666; padding: 15px; width: 100%; text-align: center; font-size: 0.8rem; }
+        footer { background: #070d1a; color: #666; padding: 15px; width: 100%; text-align: center; }
     </style>
 </head>
 <body onclick="document.getElementById('m').play()">
 
     <audio id="m" loop autoplay><source src="calm.mp3"></audio>
 
-    <div class="page-wrapper">
-        <div class="welcome-screen">
-            <img src="https://i.ibb.co/3ykG6C28/2026.jpg" alt="Welcome" loading="lazy">
-        </div>
-
-        <div class="hero">
-            <h1>مجلة التصوير الفوتوغرافي</h1>
-            <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
-        </div>
-
-        <div class="container" id="content"></div>
-
-        <div class="footer-section">
-            <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
-            <div class="yomna-title">Yomna Essam</div>
-            <div class="thanks">
-                Thank you for exploring my creative vision through this journal.<br>
-                It was a journey of blending reality with the magic of AI art.<br>
-                I truly appreciate your time and interest in my photographic work.<br>
-                With all my gratitude and appreciation.
-            </div>
-        </div>
-
-        <footer>© 2026 Yomna Essam - Faculty of Specific Education</footer>
+    <div class="welcome-screen">
+        <img src="https://i.ibb.co/3ykG6C28/2026.jpg" alt="Starry Journal Welcome Image">
     </div>
+
+    <div class="hero">
+        <h1>مجلة التصوير الفوتوغرافي</h1>
+        <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
+    </div>
+
+    <div class="container" id="content"></div>
+
+    <div class="footer-section">
+        <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
+        <div class="yomna-title">Yomna Essam</div>
+        <div class="thanks">
+            Thank you for exploring my creative vision through this journal.<br>
+            It was a journey of blending reality with the magic of AI art.
+        </div>
+    </div>
+
+    <footer>© 2026 Yomna Essam - Faculty of Specific Education</footer>
 
     <script>
         const data = [
@@ -142,10 +131,10 @@
                 imgs: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
                 ai: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
                 sch: [
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
+                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
+                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
+                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا'
                 ]
             },
             { 
@@ -155,62 +144,23 @@
                 imgs: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
                 ai: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
                 sch: [
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)'
+                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
+                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
+                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
+                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ'
                 ]
             },
             { 
-                t: 'معالم أثرية', h: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
-                info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي.',
-                caps: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
-                imgs: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
-                ai: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
-                sch: [
-                    'المدرسة: السريالية (Surrealism) <br> الرائد: سلفادور دالي (Salvador Dalí)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
-                ]
-            },
-            { 
-                t: 'الحيوانات', h: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
-                info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
-                caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
-                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
+                t: 'الحيوانات والطيور', h: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
+                info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن.',
+                caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء'],
+                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg'], 
                 ai: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
                 sch: [
-                    'المدرسة: الوحشية (Fauvism) <br> الرائد: هنري ماتيس (Henri Matisse)',
-                    'المدرسة: السريالية (Surrealism) <br> الرائد: سلفادور دالي (Salvador Dalí)',
-                    'المدرسة: الوحشية (Fauvism) <br> الرائد: هنري ماتيس (Henri Matisse)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
-                ]
-            },
-            { 
-                t: 'مراكب', h: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
-                info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية مبتكرة.',
-                caps: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
-                imgs: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
-                ai: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
-                sch: [
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: الانطباعية (Impressionism) <br> الرائد: كلود مونيه (Claude Monet)',
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)'
-                ]
-            },
-            { 
-                t: 'أجواء العيد', h: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
-                info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة.',
-                caps: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
-                imgs: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
-                ai: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
-                sch: [
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
-                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
-                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                    'الوحشية (Fauvism) <br> الرائد: هنري ماتيس',
+                    'السريالية (Surrealism) <br> الرائد: سلفادور دالي',
+                    'الوحشية (Fauvism) <br> الرائد: هنري ماتيس',
+                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا'
                 ]
             }
         ];
