@@ -13,15 +13,17 @@
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
+        
         body {
             margin: 0; padding: 0;
             background: var(--paper-bg);
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
             display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
         }
 
-        /* واجهة الترحيب */
+        /* 1. واجهة الترحيب الكاملة */
         .welcome-screen {
             width: 100%; height: 100vh;
             background: #e5d1b1;
@@ -29,103 +31,113 @@
         }
         .welcome-screen img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* الهيرو المطور (خلفية Blurry) */
+        /* 2. قسم الهيرو (العنوان والإشراف بخلفية Blurry) */
         .hero {
             width: 100%; min-height: 450px;
             position: relative;
-            display: flex; align-items: center; justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             overflow: hidden; border-bottom: 5px double var(--vintage-gold);
         }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://i.ibb.co/v6S74k1j/1776860493796.png') center/cover no-repeat;
-            opacity: 0.35; filter: blur(4px); z-index: 1;
+            opacity: 0.3; filter: blur(6px); z-index: 1;
         }
         .hero-content {
             position: relative; z-index: 2; text-align: center;
-            background: rgba(27, 41, 75, 0.7); padding: 50px; border-radius: 15px;
-            color: var(--vintage-gold); backdrop-filter: blur(3px);
+            background: rgba(27, 41, 75, 0.7); padding: 50px; border-radius: 25px;
+            color: var(--vintage-gold); backdrop-filter: blur(4px);
         }
         .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(2.5rem, 8vw, 4rem); margin: 0; }
-        .hero p { font-size: 1.8rem; color: #fff; margin-top: 10px; }
+        .hero p { font-size: 1.8rem; color: #fff; margin-top: 15px; font-weight: bold; }
 
-        /* حاوية الأقسام الطولية */
-        .section-wrapper {
-            width: 100%; padding: 60px 20px;
+        /* 3. حاوية الأقسام الطولية الكاملة */
+        .full-section {
+            width: 100%; min-height: 100vh;
             display: flex; flex-direction: column; align-items: center;
+            padding: 60px 20px; border-bottom: 2px solid #ddd;
         }
 
-        .section-title-box {
+        .section-title {
             text-align: center; margin-bottom: 40px;
-            border-bottom: 2px solid var(--vintage-gold); padding-bottom: 10px;
+            border-bottom: 3px solid var(--vintage-gold); padding-bottom: 10px;
         }
-        .section-title-box h2 { font-family: 'Aref Ruqaa', serif; font-size: 3rem; margin: 0; }
+        .section-title h2 { font-family: 'Aref Ruqaa', serif; font-size: 3.2rem; margin: 0; }
 
-        /* الجريد المطور للكروت */
-        .gallery-grid {
+        /* 4. شبكة الكروت (4 بجانب بعض) */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px; width: 95%; max-width: 1300px;
+            gap: 30px; width: 95%; max-width: 1300px;
+            justify-items: center;
         }
 
-        .flip-card { height: 480px; perspective: 1000px; cursor: pointer; position: relative; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        .flip-card { 
+            width: 100%; height: 500px; 
+            perspective: 1000px; cursor: pointer; position: relative; 
+        }
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; 
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; 
+        }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
-        /* علامة صباح / Flip Hint */
+        /* علامة صباح (Flip Hint) */
         .flip-hint {
             position: absolute; top: 15px; right: 15px;
-            background: rgba(201, 165, 92, 0.9); color: white;
-            width: 35px; height: 35px; border-radius: 50%;
+            background: var(--vintage-gold); color: white;
+            width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; z-index: 10; animation: bounce 2s infinite;
+            font-size: 1.2rem; z-index: 5;
+            animation: bounce 2s infinite; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         .card-face {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 12px;
-            border: 10px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            backface-visibility: hidden; border-radius: 15px;
+            border: 12px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             background: #fff; overflow: hidden;
         }
         .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
-        .card-face img { width: 100%; height: 80%; object-fit: contain; background: #fdfdfd; }
+        
+        .card-face img { width: 100%; height: 80%; object-fit: contain; background: #fafafa; }
 
-        .card-info {
+        .card-label {
             height: 20%; background: var(--van-gogh-blue); color: var(--vintage-gold);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 5px;
+            text-align: center; padding: 10px;
         }
-        .card-info span { font-size: 0.85rem; color: #eee; margin-top: 2px; }
+        .card-label .school-tag { font-size: 0.9rem; color: #fff; margin-top: 5px; line-height: 1.2; }
 
-        .section-desc {
-            max-width: 900px; margin-top: 40px; padding: 25px;
-            background: #fff; border-right: 8px solid var(--vintage-gold);
-            font-size: 1.3rem; line-height: 1.6; text-align: justify;
+        .section-info-text {
+            max-width: 1000px; margin-top: 50px; padding: 30px;
+            background: #fff; border-right: 10px solid var(--vintage-gold);
+            font-size: 1.4rem; line-height: 1.7; text-align: justify;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* الفوتر وصورة البروفايل */
-        .footer-wrap {
+        /* 5. الخاتمة */
+        .final-footer {
             width: 100%; background: var(--van-gogh-blue); color: #fff;
-            padding: 80px 20px; text-align: center; border-top: 5px solid var(--vintage-gold);
+            padding: 80px 20px; text-align: center; border-top: 8px solid var(--vintage-gold);
         }
-        .profile-img {
-            width: 240px; height: 240px; border-radius: 50%;
-            border: 6px solid var(--vintage-gold); object-fit: cover;
-            margin: 0 auto 30px; display: block;
+        .profile-pic {
+            width: 250px; height: 250px; border-radius: 50%;
+            border: 8px solid var(--vintage-gold); object-fit: cover;
+            margin: 0 auto 30px; display: block; box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
-        .yomna-name { font-size: 3rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
+        .yomna-name { font-size: 3.5rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
 
-        footer { background: #070d1a; color: #777; padding: 20px; width: 100%; text-align: center; }
+        footer { background: #070d1a; color: #888; padding: 25px; width: 100%; text-align: center; }
     </style>
 </head>
-<body onclick="document.getElementById('bgAudio').play()">
+<body onclick="document.getElementById('bg-music').play()">
 
-    <audio id="bgAudio" loop autoplay><source src="calm.mp3"></audio>
+    <audio id="bg-music" loop autoplay><source src="calm.mp3"></audio>
 
     <div class="welcome-screen">
-        <img src="https://i.ibb.co/v6S74k1j/1776860493796.png" alt="Welcome">
+        <img src="https://i.ibb.co/v6S74k1j/1776860493796.png" alt="Starry Journal Welcome">
     </div>
 
     <div class="hero">
@@ -136,80 +148,47 @@
         </div>
     </div>
 
-    <div id="main-content" style="width: 100%;"></div>
+    <div id="magazine-body" style="width: 100%;"></div>
 
-    <div class="footer-wrap">
-        <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-img" alt="Yomna Essam">
+    <div class="final-footer">
+        <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-pic" alt="Yomna Essam">
         <div class="yomna-name">Yomna Essam</div>
-        <p style="font-style: italic; opacity: 0.8; font-size: 1.4rem;">Blending Reality with AI Art</p>
+        <p style="font-size: 1.5rem; opacity: 0.9;">A Harmony of Reality & Magic | EST. 2026</p>
     </div>
 
-    <footer>© 2026 Yomna Essam - Faculty of Specific Education</footer>
+    <footer>© 2026 Yomna Essam - Faculty of Specific Education - Educational Technology</footer>
 
     <script>
-        const magazineData = [
+        const contentData = [
             {
                 title: 'النبات والورد',
-                desc: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال بلمسات فنية متجددة.',
-                captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
-                realImgs: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
-                aiImgs: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
+                desc: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال بلمسات فنية مستوحاة من كبار الفنانين العالميين.',
+                caps: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
+                reals: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
+                ais: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
                 schools: [
-                    'ما بعد الانطباعية | فينست فان جوخ',
-                    'الرومانسية | أوجين ديلاكروا',
-                    'ما بعد الانطباعية | فينست فان جوخ',
-                    'الرومانسية | أوجين ديلاكروا'
+                    'ما بعد الانطباعية <br> الرائد: فينست فان جوخ',
+                    'المدرسة الرومانسية <br> الرائد: أوجين ديلاكروا',
+                    'ما بعد الانطباعية <br> الرائد: فينست فان جوخ',
+                    'المدرسة الرومانسية <br> الرائد: أوجين ديلاكروا'
                 ]
             },
             {
                 title: 'مباني أثرية',
-                desc: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال ليعيد إحياء التراث.',
-                captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
-                realImgs: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
-                aiImgs: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
+                desc: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي. هذا القسم يعيد صياغة العمارة التاريخية برؤية فنية تدمج عبق التاريخ بخيال الذكاء الاصطناعي.',
+                caps: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
+                reals: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
+                ais: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
                 schools: [
-                    'ما بعد الانطباعية | فينست فان جوخ',
-                    'الرومانسية | أوجين ديلاكروا',
-                    'الرومانسية | أوجين ديلاكروا',
-                    'ما بعد الانطباعية | فينست فان جوخ'
+                    'ما بعد الانطباعية <br> الرائد: فينست فان جوخ',
+                    'المدرسة الرومانسية <br> الرائد: أوجين ديلاكروا',
+                    'المدرسة الرومانسية <br> الرائد: أوجين ديلاكروا',
+                    'ما بعد الانطباعية <br> الرائد: فينست فان جوخ'
                 ]
             },
             {
                 title: 'الحيوانات والطيور',
-                desc: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
-                captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
-                realImgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'], 
-                aiImgs: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
-                schools: [
-                    'المدرسة الوحشية | هنري ماتيس',
-                    'المدرسة السريالية | سلفادور دالي',
-                    'المدرسة الوحشية | هنري ماتيس',
-                    'المدرسة الرومانسية | أوجين ديلاكروا'
-                ]
-            }
-        ];
-
-        const container = document.getElementById('main-content');
-
-        magazineData.forEach(section => {
-            let sectionHTML = `
-                <section class="section-wrapper">
-                    <div class="section-title-box"><h2>${section.title}</h2></div>
-                    <div class="gallery-grid">
-                        ${[0, 1, 2, 3].map(i => `
-                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                                <div class="flip-hint">🔄</div>
-                                <div class="flip-card-inner">
-                                    <div class="card-face">
-                                        <img src="${section.realImgs[i]}" loading="lazy">
-                                        <div class="card-info">✨ ${section.captions[i]}</div>
-                                    </div>
-                                    <div class="card-face card-back">
-                                        <img src="${section.aiImgs[i]}" loading="lazy">
-                                        <div class="card-info">🎨 AI Transformation <span>${section.schools[i]}</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="section-desc">${section.desc}
+                desc: 'اقتناص اللحظة العفوية هو التحدي الأكبر في التصوير الفوتوغرافي. نبرز هنا الجمال الوحشي والرقة في آن واحد من خلال مدارس فنية متنوعة.',
+                caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
+                reals: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'], 
+                ais: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
