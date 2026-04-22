@@ -11,6 +11,7 @@
             --vintage-gold: #d4af37;
             --paper-bg: #f4e4bc;
             --deep-night: #0a1931;
+            --welcome-gold: #f4d38e; /* اللون الذهبي المتطابق مع صورة الترحيب */
         }
 
         body {
@@ -19,17 +20,16 @@
             color: var(--deep-night);
             font-family: 'Amiri', serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
             background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
         }
 
         /* تأثير الفراشات */
         .butterfly {
-            position: fixed;
-            width: 20px; height: 20px;
+            position: fixed; width: 20px; height: 20px;
             background: var(--vintage-gold);
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            opacity: 0.6;
-            z-index: 999;
+            opacity: 0.6; z-index: 999;
             pointer-events: none;
             animation: fly 10s infinite linear;
         }
@@ -39,32 +39,34 @@
             100% { transform: translate(100vw, -100vh) rotate(360deg); }
         }
 
-        /* واجهة الترحيب الكاملة */
+        /* واجهة الترحيب الكاملة - تم تعديل لون الخلفية */
         .welcome-screen {
             width: 100%; height: 100vh;
             background: url('https://i.ibb.co/202n39wd/welcome.png') no-repeat center center;
-            background-size: contain; /* عشان الصورة تظهر كاملة */
-            background-color: var(--deep-night);
+            background-size: contain;
+            background-color: var(--welcome-gold); /* اللون الذهبي الجديد */
         }
 
         /* الهيرو الرئيسي */
         .main-hero {
             height: 60vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: linear-gradient(rgba(10, 25, 49, 0.8), rgba(27, 41, 75, 0.8)), 
+            background-color: var(--van-gogh-blue);
+            background-image: linear-gradient(rgba(10, 25, 49, 0.8), rgba(27, 41, 75, 0.8)), 
                         url('https://i.ibb.co/rGPGj46W/flowerhero.jpg');
-            background-size: cover; background-attachment: fixed;
+            background-size: cover; background-position: center;
             color: var(--vintage-gold); border-bottom: 5px double var(--vintage-gold);
         }
 
         .main-hero h1 { font-family: 'Aref Ruqaa', serif; font-size: 5rem; margin: 0; }
-        .main-hero p { font-size: 2rem; color: #fff; }
+        .main-hero p { font-size: 2rem; color: #fff; margin-top: 10px; }
 
         /* الأقسام */
         .container { width: 90%; max-width: 1400px; margin: auto; }
         .section-header {
             margin-top: 100px; position: relative; height: 400px;
             border-radius: 30px; overflow: hidden; border: 3px solid var(--vintage-gold);
+            background-color: var(--van-gogh-blue); /* لون خلفية للتحميل الأسرع */
         }
         .section-header img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3) brightness(0.6); }
         .section-header h2 {
@@ -110,18 +112,31 @@
             line-height: 2; border-radius: 0 20px 20px 0;
         }
 
-        /* قسم الخاتمة وصورتك */
+        /* قسم الخاتمة المعدل */
         .about-me {
             background: var(--van-gogh-blue); color: #fff; padding: 100px 0;
             text-align: center; border-top: 10px solid var(--vintage-gold);
         }
         .my-pic-container {
-            width: 300px; height: 450px; /* طولية Portrait */
-            margin: auto; border: 10px solid var(--vintage-gold);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5); overflow: hidden;
+            width: 250px; height: 250px; /* دائرة Portrait متناسبة */
+            margin: auto; border: 8px solid var(--vintage-gold);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+            overflow: hidden;
+            border-radius: 50%; /* شكل الدائرة */
         }
         .my-pic-container img { width: 100%; height: 100%; object-fit: cover; }
-        .thank-you { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-top: 30px; font-style: italic; color: var(--vintage-gold); }
+        
+        .my-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem; color: #fff; margin-top: 20px; font-weight: bold;
+        }
+
+        .thank-you {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; margin: 30px auto 0; font-style: italic; 
+            color: var(--vintage-gold); max-width: 600px;
+            line-height: 1.6;
+        }
 
         footer { background: var(--deep-night); color: #fff; padding: 30px; text-align: center; }
     </style>
@@ -146,8 +161,13 @@
         <div class="my-pic-container">
             <img src="https://i.ibb.co/R52MY2C/pic1.jpg" alt="المصورة">
         </div>
+        <div class="my-name">Yomna Essam</div>
         <div class="thank-you">
-            "Thank you for exploring my starry vision."
+            Thank you for exploring this starry vision.<br>
+            Sharing my creative journey with you is a joy.<br>
+            I hope you found inspiration in this unique<br>
+            harmony of photography, art, and innovation.<br>
+            Your presence here means the world to me.
         </div>
     </div>
 
@@ -198,7 +218,7 @@
                 info: 'روح الكائنات الحية تتجسد في لوحات برية تنبض بالحياة والوحشية الفنية.',
                 captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
                 images: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
-                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
+                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/Df1crzGm/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
                 schools: [['Fauvism', 'Matisse'], ['Surrealism', 'Dali'], ['Fauvism', 'Matisse'], ['Romanticism', 'Delacroix']]
             },
             { 
@@ -219,23 +239,22 @@
             }
         ];
 
-        const container = document.getElementById('gallery-container');
+        const container = document.getElementById('main-content');
         data.forEach(p => {
             container.innerHTML += `
                 <div class="section-header">
-                    <img src="${p.hero}">
-                    <h2>${p.name}</h2>
+                    <img src="${p.hero}" loading="lazy"> <h2>${p.name}</h2>
                 </div>
                 <div class="cards-grid">
                     ${[0,1,2,3].map(i => `
                         <div class="flip-card" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="card-face">
-                                    <img src="${p.images[i]}">
+                                    <img src="${p.images[i]}" loading="lazy">
                                     <div class="caption">✨ ${p.captions[i]}</div>
                                 </div>
                                 <div class="card-face flip-card-back">
-                                    <img src="${p.aiImages[i]}">
+                                    <img src="${p.aiImages[i]}" loading="lazy">
                                     <div class="caption back-info">${p.schools[i][0]} - By: ${p.schools[i][1]}</div>
                                 </div>
                             </div>
