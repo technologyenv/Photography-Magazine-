@@ -219,11 +219,12 @@
 <body>
 
     <audio id="m" loop preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
         <source src="calm.mp3" type="audio/mpeg">
     </audio>
 
     <!-- واجهة الترحيب المحسنة -->
-    <div class="welcome-screen" onclick="document.getElementById('m').play()">
+    <div class="welcome-screen" onclick="enterSite()">
         <div class="welcome-overlay"></div>
         <div class="welcome-content">
             <h1>مجلة التصوير الفوتوغرافي</h1>
@@ -232,14 +233,16 @@
     </div>
 
     <!-- تعليمات الفليب -->
-    <div class="flip-hint" onclick="this.style.display='none'">
+    <div class="flip-hint" onclick="this.style.display='none'" id="flipHint">
         انقر على الصور للتعرف على <span class="flip-icon">↻</span>
     </div>
 
-    <div class="container" id="content"></div>
+    <div class="container" id="content" style="display: none;">
+        <!-- سيتم ملؤه بالـ JavaScript -->
+    </div>
 
     <!-- الخاتمة المحسنة -->
-    <div class="footer-section">
+    <div class="footer-section" style="display: none;" id="footer">
         <div class="footer-content">
             <div class="profile-frame">
                 <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
@@ -252,10 +255,10 @@
         </div>
     </div>
 
-    <footer>© 2026 Yomna Essam - Faculty of Specific Education</footer>
+    <footer style="display: none;" id="siteFooter">© 2026 Yomna Essam - Faculty of Specific Education</footer>
 
     <script>
-        // داتا الموقع
+        // داتا الموقع الكاملة ✅
         const data = [
             { 
                 t: 'النبات والورد', h: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
@@ -287,5 +290,4 @@
                 t: 'الحيوانات والطيور', h: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
                 info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
                 caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
-                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'], 
-                ai: ['https://i.ibb.co/8DSjsnNj/animal1ai.png
+                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i
