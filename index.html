@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yomna Essam | Photography Journal</title>
+    <title>Yomna Essam | Photography Magazine</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,282 +12,204 @@
             --paper-bg: #fdfaf6;
         }
 
-        /* تسريع الأداء */
         * { box-sizing: border-box; scroll-behavior: smooth; }
-        
         body {
             margin: 0; padding: 0;
             background: var(--paper-bg);
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
-            overflow-x: hidden;
-            line-height: 1.6;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* واجهة الترحيب الكاملة المحسنة */
+        /* واجهة الترحيب */
         .welcome-screen {
             width: 100%; height: 100vh;
-            background: url('https://i.ibb.co/v6S74k1j/1776860493796.png') center/cover no-repeat;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative;
-            opacity: 0.85;
+            background: #e5d1b1;
+            display: flex; align-items: center; justify-content: center;
         }
-        .welcome-overlay {
+        .welcome-screen img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* الهيرو المطور (خلفية Blurry) */
+        .hero {
+            width: 100%; min-height: 450px;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border-bottom: 5px double var(--vintage-gold);
+        }
+        .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(27, 41, 75, 0.4); backdrop-filter: blur(2px);
+            background: url('https://i.ibb.co/v6S74k1j/1776860493796.png') center/cover no-repeat;
+            opacity: 0.35; filter: blur(4px); z-index: 1;
         }
-        .welcome-content {
-            position: relative; z-index: 2; text-align: center; color: #fff;
-            animation: fadeInUp 1.5s ease-out;
+        .hero-content {
+            position: relative; z-index: 2; text-align: center;
+            background: rgba(27, 41, 75, 0.7); padding: 50px; border-radius: 15px;
+            color: var(--vintage-gold); backdrop-filter: blur(3px);
         }
-        .welcome-content h1 { 
-            font-family: 'Aref Ruqaa', serif; 
-            font-size: clamp(3rem, 10vw, 5rem); 
-            margin: 0 0 20px 0; 
-            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
-        }
-        .welcome-content p { 
-            font-size: clamp(1.5rem, 4vw, 2.2rem); 
-            margin: 0; 
-            font-weight: 700;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(2.5rem, 8vw, 4rem); margin: 0; }
+        .hero p { font-size: 1.8rem; color: #fff; margin-top: 10px; }
+
+        /* حاوية الأقسام الطولية */
+        .section-wrapper {
+            width: 100%; padding: 60px 20px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* تعليمات الفليب */
-        .flip-hint {
-            position: fixed; top: 20px; right: 20px; z-index: 1000;
-            background: rgba(201, 165, 92, 0.95); color: var(--van-gogh-blue);
-            padding: 15px 25px; border-radius: 50px; font-weight: 700;
-            font-size: 1.1rem; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            animation: slideIn 0.8s ease-out, pulse 2s infinite;
-            cursor: pointer; transition: all 0.3s ease;
+        .section-title-box {
+            text-align: center; margin-bottom: 40px;
+            border-bottom: 2px solid var(--vintage-gold); padding-bottom: 10px;
         }
-        .flip-hint:hover { transform: scale(1.05); }
-        .flip-icon { font-size: 1.5rem; margin-left: 10px; animation: rotate 2s infinite linear; }
+        .section-title-box h2 { font-family: 'Aref Ruqaa', serif; font-size: 3rem; margin: 0; }
 
-        /* القسم الهيرو الجديد */
-        .hero-section {
-            width: 100%; position: relative; margin-bottom: 40px;
-        }
-        .hero-section img.hero-bg {
-            width: 100%; height: 60vh; object-fit: cover;
-            filter: brightness(0.6) blur(1px);
-        }
-        .hero-title {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: var(--vintage-gold); font-family: 'Aref Ruqaa', serif;
-            font-size: clamp(3rem, 8vw, 5rem); text-align: center;
-            text-shadow: 3px 3px 15px rgba(0,0,0,0.8); z-index: 2;
-            background: rgba(27, 41, 75, 0.7); padding: 20px 40px; border-radius: 20px;
-            backdrop-filter: blur(5px);
+        /* الجريد المطور للكروت */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px; width: 95%; max-width: 1300px;
         }
 
-        .container { width: 95%; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-
-        .gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            margin: 40px 0; 
-        }
-        
-        .flip-card { 
-            height: 450px; 
-            perspective: 1200px; 
-            cursor: pointer; 
-            position: relative;
-        }
-        .flip-card-inner { 
-            position: relative; width: 100%; height: 100%; 
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-            transform-style: preserve-3d; 
-        }
+        .flip-card { height: 480px; perspective: 1000px; cursor: pointer; position: relative; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+        /* علامة صباح / Flip Hint */
+        .flip-hint {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(201, 165, 92, 0.9); color: white;
+            width: 35px; height: 35px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; z-index: 10; animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
         .card-face {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 20px;
-            border: 15px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            background: #fff; display: flex; flex-direction: column;
-            overflow: hidden;
+            backface-visibility: hidden; border-radius: 12px;
+            border: 10px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: #fff; overflow: hidden;
         }
-        .card-back { transform: rotateY(180deg); border-color: var(--vintage-gold); }
-        .card-face img { 
-            width: 100%; height: 78%; 
-            object-fit: cover; 
-            transition: transform 0.3s ease;
+        .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
+        .card-face img { width: 100%; height: 80%; object-fit: contain; background: #fdfdfd; }
+
+        .card-info {
+            height: 20%; background: var(--van-gogh-blue); color: var(--vintage-gold);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 5px;
         }
-        .flip-card:hover .card-face img { transform: scale(1.05); }
-        
-        .label {
-            height: 22%; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-            background: linear-gradient(135deg, var(--van-gogh-blue), #2d3b5f);
-            color: var(--vintage-gold); padding: 20px; text-align: center;
-            font-weight: 700; font-size: 1.1rem;
-        }
-        .school-info { 
-            font-size: 0.85rem; 
-            color: rgba(255,255,255,0.9); 
-            margin-top: 8px; 
-            line-height: 1.4; 
-            font-family: 'Amiri', serif;
+        .card-info span { font-size: 0.85rem; color: #eee; margin-top: 2px; }
+
+        .section-desc {
+            max-width: 900px; margin-top: 40px; padding: 25px;
+            background: #fff; border-right: 8px solid var(--vintage-gold);
+            font-size: 1.3rem; line-height: 1.6; text-align: justify;
         }
 
-        /* النص الوصفي */
-        .desc-text {
-            background: linear-gradient(135deg, #fff 0%, #f8f4ed 100%);
-            padding: 40px; margin: 60px 0;
-            border-right: 10px solid var(--vintage-gold);
-            border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            font-size: 1.4rem; line-height: 1.8; text-align: center;
-            position: relative;
+        /* الفوتر وصورة البروفايل */
+        .footer-wrap {
+            width: 100%; background: var(--van-gogh-blue); color: #fff;
+            padding: 80px 20px; text-align: center; border-top: 5px solid var(--vintage-gold);
         }
-        .desc-text::before {
-            content: '✨'; position: absolute; top: -20px; right: 50px;
-            font-size: 2rem; background: var(--vintage-gold); 
-            width: 40px; height: 40px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* الخاتمة المحسنة */
-        .footer-section {
-            width: 100%; 
-            background: linear-gradient(135deg, var(--van-gogh-blue), #0f1a36);
-            color: #fff; padding: 100px 20px; text-align: center;
-            position: relative; overflow: hidden;
-        }
-        .footer-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(201,165,92,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(201,165,92,0.1) 0%, transparent 50%);
-        }
-        .footer-content { position: relative; z-index: 2; }
-        .profile-frame {
-            width: 280px; height: 280px; margin: 0 auto 40px;
-            position: relative; display: flex; align-items: center; justify-content: center;
-        }
-        .profile-circle {
+        .profile-img {
             width: 240px; height: 240px; border-radius: 50%;
-            border: 8px solid var(--vintage-gold); object-fit: cover;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.2);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            border: 6px solid var(--vintage-gold); object-fit: cover;
+            margin: 0 auto 30px; display: block;
         }
-        .profile-frame:hover .profile-circle {
-            transform: scale(1.05); box-shadow: 0 35px 70px rgba(201,165,92,0.4);
-        }
-        .yomna-title { 
-            font-size: 3.5rem; 
-            color: var(--vintage-gold); 
-            font-family: 'Playfair Display', serif; 
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
-        .thanks {
-            font-size: 1.4rem; 
-            font-style: italic; 
-            max-width: 800px; 
-            margin: 0 auto;
-            background: rgba(255,255,255,0.1); 
-            padding: 30px; 
-            border-radius: 20px;
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+        .yomna-name { font-size: 3rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
 
-        footer { 
-            background: #0a0f1e; 
-            color: #aaa; 
-            padding: 25px; 
-            width: 100%; 
-            text-align: center; 
-            font-size: 1rem; 
-            font-family: 'Amiri', serif;
-        }
-
-        /* التحسينات والأنيميشن */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* تحسين السرعة */
-        img { loading: lazy; }
-        .flip-card, .hero-section { will-change: transform; }
+        footer { background: #070d1a; color: #777; padding: 20px; width: 100%; text-align: center; }
     </style>
 </head>
-<body>
+<body onclick="document.getElementById('bgAudio').play()">
 
-    <audio id="m" loop preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-        <source src="calm.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgAudio" loop autoplay><source src="calm.mp3"></audio>
 
-    <!-- واجهة الترحيب المحسنة -->
-    <div class="welcome-screen" onclick="enterSite()">
-        <div class="welcome-overlay"></div>
-        <div class="welcome-content">
+    <div class="welcome-screen">
+        <img src="https://i.ibb.co/v6S74k1j/1776860493796.png" alt="Welcome">
+    </div>
+
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
             <h1>مجلة التصوير الفوتوغرافي</h1>
             <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
         </div>
     </div>
 
-    <!-- تعليمات الفليب -->
-    <div class="flip-hint" onclick="this.style.display='none'" id="flipHint">
-        انقر على الصور للتعرف على <span class="flip-icon">↻</span>
+    <div id="main-content" style="width: 100%;"></div>
+
+    <div class="footer-wrap">
+        <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-img" alt="Yomna Essam">
+        <div class="yomna-name">Yomna Essam</div>
+        <p style="font-style: italic; opacity: 0.8; font-size: 1.4rem;">Blending Reality with AI Art</p>
     </div>
 
-    <div class="container" id="content" style="display: none;">
-        <!-- سيتم ملؤه بالـ JavaScript -->
-    </div>
-
-    <!-- الخاتمة المحسنة -->
-    <div class="footer-section" style="display: none;" id="footer">
-        <div class="footer-content">
-            <div class="profile-frame">
-                <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
-            </div>
-            <div class="yomna-title">Yomna Essam</div>
-            <div class="thanks">
-                شكراً لاستكشافك رؤيتي الإبداعية من خلال هذه المجلة.<br>
-                رحلة فنية تجمع بين واقع التصوير والسحر الإبداعي للذكاء الاصطناعي.
-            </div>
-        </div>
-    </div>
-
-    <footer style="display: none;" id="siteFooter">© 2026 Yomna Essam - Faculty of Specific Education</footer>
+    <footer>© 2026 Yomna Essam - Faculty of Specific Education</footer>
 
     <script>
-        // داتا الموقع الكاملة ✅
-        const data = [
-            { 
-                t: 'النبات والورد', h: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
-                info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال بلمسات فنية متجددة.',
-                caps: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
-                imgs: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
-                ai: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
-                sch: [
-                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
-                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
-                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
-                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا'
+        const magazineData = [
+            {
+                title: 'النبات والورد',
+                desc: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال بلمسات فنية متجددة.',
+                captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
+                realImgs: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
+                aiImgs: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
+                schools: [
+                    'ما بعد الانطباعية | فينست فان جوخ',
+                    'الرومانسية | أوجين ديلاكروا',
+                    'ما بعد الانطباعية | فينست فان جوخ',
+                    'الرومانسية | أوجين ديلاكروا'
                 ]
             },
-            { 
-                t: 'مباني أثرية', h: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
-                info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال ليعيد إحياء التراث.',
-                caps: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
-                imgs: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
-                ai: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
-                sch: [
-                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ',
-                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
-                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا',
-                    'ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ'
+            {
+                title: 'مباني أثرية',
+                desc: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال ليعيد إحياء التراث.',
+                captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
+                realImgs: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
+                aiImgs: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
+                schools: [
+                    'ما بعد الانطباعية | فينست فان جوخ',
+                    'الرومانسية | أوجين ديلاكروا',
+                    'الرومانسية | أوجين ديلاكروا',
+                    'ما بعد الانطباعية | فينست فان جوخ'
                 ]
             },
-            { 
-                t: 'الحيوانات والطيور', h: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
-                info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
-                caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
-                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i
+            {
+                title: 'الحيوانات والطيور',
+                desc: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
+                captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
+                realImgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'], 
+                aiImgs: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
+                schools: [
+                    'المدرسة الوحشية | هنري ماتيس',
+                    'المدرسة السريالية | سلفادور دالي',
+                    'المدرسة الوحشية | هنري ماتيس',
+                    'المدرسة الرومانسية | أوجين ديلاكروا'
+                ]
+            }
+        ];
+
+        const container = document.getElementById('main-content');
+
+        magazineData.forEach(section => {
+            let sectionHTML = `
+                <section class="section-wrapper">
+                    <div class="section-title-box"><h2>${section.title}</h2></div>
+                    <div class="gallery-grid">
+                        ${[0, 1, 2, 3].map(i => `
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-hint">🔄</div>
+                                <div class="flip-card-inner">
+                                    <div class="card-face">
+                                        <img src="${section.realImgs[i]}" loading="lazy">
+                                        <div class="card-info">✨ ${section.captions[i]}</div>
+                                    </div>
+                                    <div class="card-face card-back">
+                                        <img src="${section.aiImgs[i]}" loading="lazy">
+                                        <div class="card-info">🎨 AI Transformation <span>${section.schools[i]}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="section-desc">${section.desc}
