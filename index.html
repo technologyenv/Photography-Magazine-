@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yomna Essam | Starry Journal</title>
+    <title>Yomna Essam | Photography Journal</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --van-gogh-blue: #1b294b;
             --vintage-gold: #c9a55c;
             --paper-bg: #fdfaf6;
-            --welcome-bg: #f4d38e;
         }
 
         * { box-sizing: border-box; }
@@ -20,122 +19,97 @@
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
             overflow-x: hidden;
-            display: flex; flex-direction: column; align-items: center;
+            display: flex; flex-direction: column; align-items: center; /* توسيط الموقع */
         }
 
-        .page-wrapper {
-            width: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
-            display: flex; flex-direction: column; align-items: center;
-        }
+        .page-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-        /* واجهة الترحيب */
+        /* واجهة الترحيب - التصميم الجديد */
         .welcome-screen {
             width: 100%; height: 100vh;
-            background-color: var(--welcome-bg);
+            background: #e5d1b1; /* لون محايد يتماشى مع التصميم */
             display: flex; align-items: center; justify-content: center;
         }
         .welcome-screen img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         /* الهيرو */
         .hero {
-            width: 100%; padding: 80px 20px;
+            width: 100%; padding: 60px 20px;
             background: linear-gradient(rgba(27, 41, 75, 0.85), rgba(27, 41, 75, 0.85)), 
                         url('https://i.ibb.co/rGPGj46W/flowerhero.jpg') center/cover fixed;
-            color: var(--vintage-gold); border-bottom: 6px double var(--vintage-gold);
+            color: var(--vintage-gold); border-bottom: 5px double var(--vintage-gold);
             text-align: center;
         }
-        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin: 0; }
+        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: 3.5rem; margin: 0; }
 
-        /* الأقسام */
-        .content-container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 40px 0; }
+        /* الأقسام والمحتوى */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 20px 0; }
 
-        .section-title {
-            margin: 60px 0 30px; position: relative; height: 300px;
-            border-radius: 20px; overflow: hidden; border: 4px solid var(--vintage-gold);
+        .section-header {
+            margin: 50px 0 30px; position: relative; height: 250px;
+            border-radius: 15px; overflow: hidden; border: 3px solid var(--vintage-gold);
         }
-        .section-title img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
-        .section-title h2 {
+        .section-header img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+        .section-header h2 {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: var(--vintage-gold); font-size: 3rem; font-family: 'Aref Ruqaa', serif; margin: 0;
+            color: var(--vintage-gold); font-size: 2.8rem; font-family: 'Aref Ruqaa', serif;
         }
 
-        /* الجريد والكروت */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; }
-        .art-card { height: 450px; perspective: 1000px; cursor: pointer; }
-        .art-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
-        .art-card.flipped .art-card-inner { transform: rotateY(180deg); }
+        /* الكروت والفريم الموحد */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        
+        .flip-card { height: 500px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
-        .card-front, .card-back {
+        .card-face {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 10px; border: 8px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15); overflow: hidden;
+            backface-visibility: hidden; border-radius: 8px;
+            border: 10px solid #fff; box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background: #fff; display: flex; flex-direction: column;
         }
         .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
-        .card-front img, .card-back img { width: 100%; height: 85%; object-fit: cover; }
-        .card-label {
-            height: 15%; display: flex; align-items: center; justify-content: center;
-            background: var(--van-gogh-blue); color: var(--vintage-gold); font-size: 1.1rem;
+
+        /* منع أكل الصور وضمان الفريم الموحد */
+        .card-face img {
+            width: 100%; height: 80%;
+            object-fit: contain; /* عشان الصورة تظهر كاملة */
+            background: #f9f9f9;
+        }
+        .label {
+            height: 20%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: var(--van-gogh-blue); color: var(--vintage-gold); padding: 5px; text-align: center;
+        }
+        .label .school-info { font-size: 0.9rem; color: #fff; margin-top: 3px; }
+
+        .desc-text {
+            background: #fff; padding: 20px; margin: 20px 0 40px;
+            border-right: 6px solid var(--vintage-gold); font-size: 1.2rem;
         }
 
-        .info-box {
-            background: #fff; padding: 25px; margin: 30px 0 60px;
-            border-right: 8px solid var(--vintage-gold); font-size: 1.2rem; line-height: 1.7;
-        }
-
-        /* الخاتمة وصورة القلب */
-        .final-section {
+        /* الخاتمة وصورة الدائرة */
+        .footer-section {
             width: 100%; background: var(--van-gogh-blue); color: #fff;
-            padding: 80px 20px; text-align: center; border-top: 6px solid var(--vintage-gold);
+            padding: 60px 20px; text-align: center; border-top: 5px solid var(--vintage-gold);
         }
-        
-        .heart-frame {
-            width: 280px; height: 280px;
-            margin: 0 auto 30px;
-            background: var(--vintage-gold);
-            /* صنع شكل القلب */
-            clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.194 8.94-8.134 12-10.134 12-14.194 0-8.165-10.011-8.967-12-3.568z');
-            transform: scale(12); /* تكبير المسار ليتناسب مع الحاوية */
-            display: flex; align-items: center; justify-content: center;
+        .profile-circle {
+            width: 220px; height: 220px; border-radius: 50%;
+            border: 5px solid var(--vintage-gold); object-fit: cover;
+            margin: 0 auto 20px; display: block; box-shadow: 0 0 20px rgba(0,0,0,0.4);
         }
+        .yomna-title { font-size: 2.5rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
+        .thanks { font-size: 1.3rem; max-width: 600px; margin: 15px auto; line-height: 1.6; font-style: italic; }
 
-        /* حاوية بديلة للقلب أسهل في التحكم */
-        .my-heart-pic {
-            width: 250px; height: 250px;
-            margin: 0 auto 30px;
-            position: relative;
-            background-color: var(--vintage-gold);
-            padding: 5px;
-            clip-path: polygon(50% 15%, 80% 0%, 100% 20%, 100% 50%, 50% 95%, 0% 50%, 0% 20%, 20% 0%);
-            /* شكل قلب مبسط واحترافي باستخدام clip-path */
-            clip-path: url(#heart-clip); 
-        }
-
-        /* الطريقة الأدق لشكل القلب بالصور */
-        .heart-container {
-            width: 250px; height: 250px;
-            margin: 0 auto 30px;
-            overflow: hidden;
-            border: 4px solid var(--vintage-gold);
-            clip-path: path('M125,245 C125,245 20,145 20,80 C20,35 60,15 95,15 C115,15 125,30 125,30 C125,30 135,15 155,15 C190,15 230,35 230,80 C230,145 125,245 125,245 Z');
-        }
-        .heart-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .yomna-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--vintage-gold); margin-bottom: 15px; }
-        .thank-you-text { font-size: 1.4rem; max-width: 700px; margin: 0 auto; line-height: 1.6; font-style: italic; opacity: 0.9; }
-
-        footer { background: #070d1a; color: #555; padding: 20px; width: 100%; text-align: center; }
+        footer { background: #070d1a; color: #666; padding: 15px; width: 100%; text-align: center; font-size: 0.8rem; }
     </style>
 </head>
-<body onclick="playMusic()">
+<body onclick="document.getElementById('m').play()">
 
-    <audio id="bgMusic" loop autoplay>
-        <source src="calm.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="m" loop autoplay><source src="calm.mp3"></audio>
 
     <div class="page-wrapper">
         <div class="welcome-screen">
-            <img src="https://i.ibb.co/202n39wd/welcome.png" alt="Welcome" loading="lazy">
+            <img src="https://i.ibb.co/3ykG6C28/2026.jpg" alt="Welcome" loading="lazy">
         </div>
 
         <div class="hero">
@@ -143,19 +117,16 @@
             <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
         </div>
 
-        <div class="content-container" id="main-content"></div>
+        <div class="container" id="content"></div>
 
-        <div class="final-section">
-            <div class="heart-container">
-                <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" alt="Yomna Essam" loading="lazy">
-            </div>
-            <div class="yomna-name">Yomna Essam</div>
-            <div class="thank-you-text">
-                Thank you for journeying through my creative lens.<br>
-                This project was a labor of love, blending art and technology.<br>
-                I hope these captures and AI transformations inspired you.<br>
-                Every frame tells a story of passion and discovery.<br>
-                Looking forward to sharing more visions in the future.
+        <div class="footer-section">
+            <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
+            <div class="yomna-title">Yomna Essam</div>
+            <div class="thanks">
+                Thank you for exploring my creative vision through this journal.<br>
+                It was a journey of blending reality with the magic of AI art.<br>
+                I truly appreciate your time and interest in my photographic work.<br>
+                With all my gratitude and appreciation.
             </div>
         </div>
 
@@ -163,86 +134,102 @@
     </div>
 
     <script>
-        function playMusic() {
-            var audio = document.getElementById('bgMusic');
-            audio.play();
-        }
-
         const data = [
             { 
-                name: 'النبات والورد', hero: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
-                info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال بلمسات فنية متجددة.',
-                captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
-                images: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
-                aiImages: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
-                schools: ['Post-Impressionism', 'Romanticism', 'Post-Impressionism', 'Romanticism']
+                t: 'النبات والورد', h: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
+                info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال.',
+                caps: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
+                imgs: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
+                ai: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
+                sch: [
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                ]
             },
             { 
-                name: 'مباني أثرية', hero: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
-                info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال ليعيد إحياء التراث.',
-                captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
-                images: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
-                aiImages: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
-                schools: ['Post-Impressionism', 'Romanticism', 'Romanticism', 'Post-Impressionism']
+                t: 'مباني أثرية', h: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
+                info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال.',
+                caps: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
+                imgs: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
+                ai: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
+                sch: [
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)'
+                ]
             },
             { 
-                name: 'معالم أثرية', hero: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
-                info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي لتخلق بعداً بصرياً مذهلاً.',
-                captions: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
-                images: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
-                aiImages: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
-                schools: ['Surrealism', 'Romanticism', 'Romanticism', 'Romanticism']
+                t: 'معالم أثرية', h: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
+                info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي.',
+                caps: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
+                imgs: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
+                ai: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
+                sch: [
+                    'المدرسة: السريالية (Surrealism) <br> الرائد: سلفادور دالي (Salvador Dalí)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                ]
             },
             { 
-                name: 'الحيوانات', hero: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
-                info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب المخفية من جمال الطبيعة البرية.',
-                captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
-                images: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
-                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
-                schools: ['Fauvism', 'Surrealism', 'Fauvism', 'Romanticism']
+                t: 'الحيوانات', h: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
+                info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
+                caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
+                imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
+                ai: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
+                sch: [
+                    'المدرسة: الوحشية (Fauvism) <br> الرائد: هنري ماتيس (Henri Matisse)',
+                    'المدرسة: السريالية (Surrealism) <br> الرائد: سلفادور دالي (Salvador Dalí)',
+                    'المدرسة: الوحشية (Fauvism) <br> الرائد: هنري ماتيس (Henri Matisse)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                ]
             },
             { 
-                name: 'مراكب', hero: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
-                info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء الساحرة، رحلة بصرية تحول القوارب التقليدية إلى لوحات تشكيلية مبتكرة.',
-                captions: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
-                images: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
-                aiImages: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
-                schools: ['Romanticism', 'Romanticism', 'Impressionism', 'Post-Impressionism']
+                t: 'مراكب', h: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
+                info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية مبتكرة.',
+                caps: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
+                imgs: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
+                ai: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
+                sch: [
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: الانطباعية (Impressionism) <br> الرائد: كلود مونيه (Claude Monet)',
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)'
+                ]
             },
             { 
-                name: 'أجواء العيد', hero: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
-                info: 'بهجة العيد وفرحة الأطفال في صور تنبض بالحياة، حيث تتحول اللحظات السعيدة إلى فن خالد عبر رؤية إبداعية شاملة.',
-                captions: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
-                images: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
-                aiImages: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
-                schools: ['Romanticism', 'Post-Impressionism', 'Post-Impressionism', 'Romanticism']
+                t: 'أجواء العيد', h: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
+                info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة.',
+                caps: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
+                imgs: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
+                ai: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
+                sch: [
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)',
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
+                    'المدرسة: ما بعد الانطباعية (Post-Impressionism) <br> الرائد: فينست فان جوخ (Vincent van Gogh)',
+                    'المدرسة: الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا (Eugène Delacroix)'
+                ]
             }
         ];
 
-        const container = document.getElementById('main-content');
+        const c = document.getElementById('content');
         data.forEach(p => {
-            container.innerHTML += `
-                <div class="section-title">
-                    <img src="${p.hero}" loading="lazy">
-                    <h2>${p.name}</h2>
-                </div>
-                <div class="gallery-grid">
+            c.innerHTML += `
+                <div class="section-header"><img src="${p.h}" loading="lazy"><h2>${p.t}</h2></div>
+                <div class="gallery">
                     ${[0,1,2,3].map(i => `
-                        <div class="art-card" onclick="this.classList.toggle('flipped')">
-                            <div class="art-card-inner">
-                                <div class="card-front">
-                                    <img src="${p.images[i]}" loading="lazy">
-                                    <div class="card-label">✨ ${p.captions[i]}</div>
-                                </div>
-                                <div class="card-face card-back">
-                                    <img src="${p.aiImages[i]}" loading="lazy">
-                                    <div class="card-label">${p.schools[i]} Style</div>
-                                </div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="card-face"><img src="${p.imgs[i]}" loading="lazy"><div class="label">✨ ${p.caps[i]}</div></div>
+                                <div class="card-face card-back"><img src="${p.ai[i]}" loading="lazy"><div class="label"><div class="school-info">${p.sch[i]}</div></div></div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
-                <div class="info-box">${p.info}</div>
+                <div class="desc-text">${p.info}</div>
             `;
         });
     </script>
