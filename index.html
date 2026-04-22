@@ -20,128 +20,235 @@
             background: var(--paper-bg);
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
-            display: flex; flex-direction: column; align-items: center;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* واجهة الترحيب الكاملة */
+        /* واجهة الترحيب الكاملة المحسنة */
         .welcome-screen {
             width: 100%; height: 100vh;
-            background: #e5d1b1;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .welcome-screen img { 
-            width: 100%; height: 100%; 
-            object-fit: contain; 
-        }
-
-        /* قسم الهيرو المطور بخلفية Blurry */
-        .hero {
-            width: 100%; min-height: 400px;
-            position: relative;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--vintage-gold);
-            text-align: center;
-            overflow: hidden;
-            border-bottom: 5px double var(--vintage-gold);
-        }
-
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://i.ibb.co/v6S74k1j/1776860493796.png') center/cover no-repeat;
-            opacity: 0.4; /* تقليل الشفافية كما طلبتِ */
-            filter: blur(5px); /* تأثير الضبابية */
-            z-index: 1;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative;
+            opacity: 0.85;
+        }
+        .welcome-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(27, 41, 75, 0.4); backdrop-filter: blur(2px);
+        }
+        .welcome-content {
+            position: relative; z-index: 2; text-align: center; color: #fff;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        .welcome-content h1 { 
+            font-family: 'Aref Ruqaa', serif; 
+            font-size: clamp(3rem, 10vw, 5rem); 
+            margin: 0 0 20px 0; 
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+        }
+        .welcome-content p { 
+            font-size: clamp(1.5rem, 4vw, 2.2rem); 
+            margin: 0; 
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
-        .hero-content {
-            position: relative; z-index: 2;
-            background: rgba(27, 41, 75, 0.6); /* طبقة خفيفة لبروز الخط */
-            padding: 40px; border-radius: 20px;
-            backdrop-filter: blur(2px);
+        /* تعليمات الفليب */
+        .flip-hint {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: rgba(201, 165, 92, 0.95); color: var(--van-gogh-blue);
+            padding: 15px 25px; border-radius: 50px; font-weight: 700;
+            font-size: 1.1rem; box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: slideIn 0.8s ease-out, pulse 2s infinite;
+            cursor: pointer; transition: all 0.3s ease;
         }
+        .flip-hint:hover { transform: scale(1.05); }
+        .flip-icon { font-size: 1.5rem; margin-left: 10px; animation: rotate 2s infinite linear; }
 
-        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(2.5rem, 8vw, 4rem); margin: 0 0 15px 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.8rem; margin: 0; font-weight: bold; color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-
-        .container { width: 92%; max-width: 1150px; margin: 0 auto; padding: 20px 0; }
-
-        /* تنسيق الفريمات الموحدة السريعة */
-        .section-header {
-            margin: 60px 0 30px; position: relative; height: 280px;
-            border-radius: 15px; overflow: hidden; border: 3px solid var(--vintage-gold);
+        /* القسم الهيرو الجديد */
+        .hero-section {
+            width: 100%; position: relative; margin-bottom: 40px;
         }
-        .section-header img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
-        .section-header h2 {
+        .hero-section img.hero-bg {
+            width: 100%; height: 60vh; object-fit: cover;
+            filter: brightness(0.6) blur(1px);
+        }
+        .hero-title {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: var(--vintage-gold); font-size: 3rem; font-family: 'Aref Ruqaa', serif; margin: 0;
+            color: var(--vintage-gold); font-family: 'Aref Ruqaa', serif;
+            font-size: clamp(3rem, 8vw, 5rem); text-align: center;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.8); z-index: 2;
+            background: rgba(27, 41, 75, 0.7); padding: 20px 40px; border-radius: 20px;
+            backdrop-filter: blur(5px);
         }
 
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
+        .container { width: 95%; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin: 40px 0; 
+        }
         
-        .flip-card { height: 520px; perspective: 1000px; cursor: pointer; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s ease-out; transform-style: preserve-3d; }
+        .flip-card { 
+            height: 450px; 
+            perspective: 1200px; 
+            cursor: pointer; 
+            position: relative;
+        }
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; 
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            transform-style: preserve-3d; 
+        }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
         .card-face {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 10px;
-            border: 12px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            backface-visibility: hidden; border-radius: 20px;
+            border: 15px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             background: #fff; display: flex; flex-direction: column;
+            overflow: hidden;
         }
-        .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
-        .card-face img { width: 100%; height: 82%; object-fit: contain; background: #fafafa; }
+        .card-back { transform: rotateY(180deg); border-color: var(--vintage-gold); }
+        .card-face img { 
+            width: 100%; height: 78%; 
+            object-fit: cover; 
+            transition: transform 0.3s ease;
+        }
+        .flip-card:hover .card-face img { transform: scale(1.05); }
         
         .label {
-            height: 18%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: var(--van-gogh-blue); color: var(--vintage-gold); padding: 5px; text-align: center;
+            height: 22%; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--van-gogh-blue), #2d3b5f);
+            color: var(--vintage-gold); padding: 20px; text-align: center;
+            font-weight: 700; font-size: 1.1rem;
         }
-        .school-info { font-size: 0.95rem; color: #fff; margin-top: 4px; line-height: 1.3; }
+        .school-info { 
+            font-size: 0.85rem; 
+            color: rgba(255,255,255,0.9); 
+            margin-top: 8px; 
+            line-height: 1.4; 
+            font-family: 'Amiri', serif;
+        }
 
+        /* النص الوصفي */
         .desc-text {
-            background: #fff; padding: 25px; margin: 25px 0 50px;
-            border-right: 8px solid var(--vintage-gold); font-size: 1.3rem; line-height: 1.6;
+            background: linear-gradient(135deg, #fff 0%, #f8f4ed 100%);
+            padding: 40px; margin: 60px 0;
+            border-right: 10px solid var(--vintage-gold);
+            border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            font-size: 1.4rem; line-height: 1.8; text-align: center;
+            position: relative;
+        }
+        .desc-text::before {
+            content: '✨'; position: absolute; top: -20px; right: 50px;
+            font-size: 2rem; background: var(--vintage-gold); 
+            width: 40px; height: 40px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* الخاتمة وصورة الدائرة */
+        /* الخاتمة المحسنة */
         .footer-section {
-            width: 100%; background: var(--van-gogh-blue); color: #fff;
-            padding: 70px 20px; text-align: center; border-top: 5px solid var(--vintage-gold);
+            width: 100%; 
+            background: linear-gradient(135deg, var(--van-gogh-blue), #0f1a36);
+            color: #fff; padding: 100px 20px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .footer-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(201,165,92,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(201,165,92,0.1) 0%, transparent 50%);
+        }
+        .footer-content { position: relative; z-index: 2; }
+        .profile-frame {
+            width: 280px; height: 280px; margin: 0 auto 40px;
+            position: relative; display: flex; align-items: center; justify-content: center;
         }
         .profile-circle {
             width: 240px; height: 240px; border-radius: 50%;
-            border: 6px solid var(--vintage-gold); object-fit: cover;
-            margin: 0 auto 25px; display: block; box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            border: 8px solid var(--vintage-gold); object-fit: cover;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
-        .yomna-title { font-size: 2.8rem; color: var(--vintage-gold); font-family: 'Playfair Display', serif; }
+        .profile-frame:hover .profile-circle {
+            transform: scale(1.05); box-shadow: 0 35px 70px rgba(201,165,92,0.4);
+        }
+        .yomna-title { 
+            font-size: 3.5rem; 
+            color: var(--vintage-gold); 
+            font-family: 'Playfair Display', serif; 
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        .thanks {
+            font-size: 1.4rem; 
+            font-style: italic; 
+            max-width: 800px; 
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1); 
+            padding: 30px; 
+            border-radius: 20px;
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-        footer { background: #070d1a; color: #777; padding: 20px; width: 100%; text-align: center; font-size: 0.9rem; }
+        footer { 
+            background: #0a0f1e; 
+            color: #aaa; 
+            padding: 25px; 
+            width: 100%; 
+            text-align: center; 
+            font-size: 1rem; 
+            font-family: 'Amiri', serif;
+        }
+
+        /* التحسينات والأنيميشن */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* تحسين السرعة */
+        img { loading: lazy; }
+        .flip-card, .hero-section { will-change: transform; }
     </style>
 </head>
-<body onclick="document.getElementById('m').play()">
+<body>
 
-    <audio id="m" loop autoplay><source src="calm.mp3"></audio>
+    <audio id="m" loop preload="auto">
+        <source src="calm.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="welcome-screen">
-        <img src="https://i.ibb.co/v6S74k1j/1776860493796.png" alt="Starry Journal Welcome">
-    </div>
-
-    <div class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
+    <!-- واجهة الترحيب المحسنة -->
+    <div class="welcome-screen" onclick="document.getElementById('m').play()">
+        <div class="welcome-overlay"></div>
+        <div class="welcome-content">
             <h1>مجلة التصوير الفوتوغرافي</h1>
             <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
         </div>
     </div>
 
+    <!-- تعليمات الفليب -->
+    <div class="flip-hint" onclick="this.style.display='none'">
+        انقر على الصور للتعرف على <span class="flip-icon">↻</span>
+    </div>
+
     <div class="container" id="content"></div>
 
+    <!-- الخاتمة المحسنة -->
     <div class="footer-section">
-        <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
-        <div class="yomna-title">Yomna Essam</div>
-        <div class="thanks">
-            <i>Thank you for exploring my creative vision through this journal.<br>
-            A journey of blending reality with the magic of AI art.</i>
+        <div class="footer-content">
+            <div class="profile-frame">
+                <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="profile-circle" alt="Yomna Essam">
+            </div>
+            <div class="yomna-title">Yomna Essam</div>
+            <div class="thanks">
+                شكراً لاستكشافك رؤيتي الإبداعية من خلال هذه المجلة.<br>
+                رحلة فنية تجمع بين واقع التصوير والسحر الإبداعي للذكاء الاصطناعي.
+            </div>
         </div>
     </div>
 
@@ -181,33 +288,4 @@
                 info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
                 caps: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'هدوء الطبيعة'],
                 imgs: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'], 
-                ai: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
-                sch: [
-                    'الوحشية (Fauvism) <br> الرائد: هنري ماتيس',
-                    'السريالية (Surrealism) <br> الرائد: سلفادور دالي',
-                    'الوحشية (Fauvism) <br> الرائد: هنري ماتيس',
-                    'الرومانسية (Romanticism) <br> الرائد: أوجين ديلاكروا'
-                ]
-            }
-        ];
-
-        const c = document.getElementById('content');
-        data.forEach(p => {
-            c.innerHTML += `
-                <div class="section-header"><img src="${p.h}" loading="lazy"><h2>${p.t}</h2></div>
-                <div class="gallery">
-                    ${[0,1,2,3].map(i => `
-                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                            <div class="flip-card-inner">
-                                <div class="card-face"><img src="${p.imgs[i]}" loading="lazy"><div class="label">✨ ${p.caps[i]}</div></div>
-                                <div class="card-face card-back"><img src="${p.ai[i]}" loading="lazy"><div class="label"><div class="school-info">${p.sch[i]}</div></div></div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="desc-text">${p.info}</div>
-            `;
-        });
-    </script>
-</body>
-</html>
+                ai: ['https://i.ibb.co/8DSjsnNj/animal1ai.png
