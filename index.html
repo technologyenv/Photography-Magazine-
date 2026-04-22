@@ -3,147 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Starry Night Journal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <title>Yomna Essam | Photography Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --van-gogh-blue: #1b294b;
             --vintage-gold: #d4af37;
             --paper-bg: #f4e4bc;
-            --deep-night: #0a1931;
-            --welcome-gold: #f4d38e; /* اللون الذهبي المتطابق مع صورة الترحيب */
+            --welcome-gold: #f4d38e; /* اللون الذهبي المطابق لصورتك */
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0; padding: 0;
-            background: var(--paper-bg);
-            color: var(--deep-night);
+            background: var(--paper-bg) url('https://www.transparenttextures.com/patterns/old-paper.png');
+            color: #1a1a1a;
             font-family: 'Amiri', serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
-            background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
+            text-align: center; /* لتوسيط كل شيء في الصفحة */
         }
 
-        /* تأثير الفراشات */
+        /* الفراشات */
         .butterfly {
-            position: fixed; width: 20px; height: 20px;
-            background: var(--vintage-gold);
+            position: fixed; width: 15px; height: 15px;
+            background: var(--vintage-gold); opacity: 0.5; z-index: 999;
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            opacity: 0.6; z-index: 999;
-            pointer-events: none;
-            animation: fly 10s infinite linear;
+            pointer-events: none; animation: fly 12s infinite linear;
         }
-
         @keyframes fly {
-            0% { transform: translate(-100vw, 100vh) rotate(0deg); }
-            100% { transform: translate(100vw, -100vh) rotate(360deg); }
+            0% { transform: translate(-10vw, 100vh) rotate(0deg); }
+            100% { transform: translate(110vw, -10vh) rotate(360deg); }
         }
 
-        /* واجهة الترحيب الكاملة - تم تعديل لون الخلفية */
+        /* واجهة الترحيب - دمج كامل */
         .welcome-screen {
             width: 100%; height: 100vh;
-            background: url('https://i.ibb.co/202n39wd/welcome.png') no-repeat center center;
+            background: var(--welcome-gold) url('https://i.ibb.co/202n39wd/welcome.png') no-repeat center center;
             background-size: contain;
-            background-color: var(--welcome-gold); /* اللون الذهبي الجديد */
+            display: flex; align-items: flex-end; justify-content: center;
         }
 
         /* الهيرو الرئيسي */
         .main-hero {
-            height: 60vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-color: var(--van-gogh-blue);
-            background-image: linear-gradient(rgba(10, 25, 49, 0.8), rgba(27, 41, 75, 0.8)), 
-                        url('https://i.ibb.co/rGPGj46W/flowerhero.jpg');
-            background-size: cover; background-position: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(27, 41, 75, 0.9), rgba(27, 41, 75, 0.9)), url('https://i.ibb.co/rGPGj46W/flowerhero.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
             color: var(--vintage-gold); border-bottom: 5px double var(--vintage-gold);
         }
+        .main-hero h1 { font-family: 'Aref Ruqaa', serif; font-size: 4.5rem; margin: 0; }
+        .main-hero p { font-size: 1.8rem; color: #fff; margin: 15px 0; }
 
-        .main-hero h1 { font-family: 'Aref Ruqaa', serif; font-size: 5rem; margin: 0; }
-        .main-hero p { font-size: 2rem; color: #fff; margin-top: 10px; }
-
-        /* الأقسام */
-        .container { width: 90%; max-width: 1400px; margin: auto; }
-        .section-header {
-            margin-top: 100px; position: relative; height: 400px;
-            border-radius: 30px; overflow: hidden; border: 3px solid var(--vintage-gold);
-            background-color: var(--van-gogh-blue); /* لون خلفية للتحميل الأسرع */
+        /* حاوية المحتوى - التوسيط */
+        .container {
+            width: 90%; max-width: 1200px;
+            margin: 0 auto; /* هذا ما يضمن التوسيط */
+            padding: 40px 0;
         }
-        .section-header img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3) brightness(0.6); }
+
+        .section-header {
+            margin-top: 80px; position: relative; height: 350px;
+            border-radius: 20px; overflow: hidden; border: 4px solid var(--vintage-gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .section-header img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
         .section-header h2 {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: var(--vintage-gold); font-size: 4.5rem; z-index: 2; margin: 0;
-            font-family: 'Aref Ruqaa', serif; text-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+            color: var(--vintage-gold); font-size: 3.5rem; font-family: 'Aref Ruqaa', serif;
+            text-shadow: 3px 3px 10px #000; margin: 0; width: 100%;
         }
 
-        /* الكروت الكبيرة */
+        /* الكروت */
         .cards-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 50px; margin-top: 50px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 40px; justify-items: center;
         }
-
-        .flip-card { height: 600px; perspective: 1500px; }
-        .flip-card-inner {
-            position: relative; width: 100%; height: 100%;
-            transition: transform 0.8s ease-in-out; transform-style: preserve-3d;
-        }
+        .flip-card { width: 100%; max-width: 350px; height: 500px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
         .card-face {
             position: absolute; width: 100%; height: 100%;
             backface-visibility: hidden; border-radius: 15px;
-            border: 8px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            overflow: hidden; background: #fff;
+            border: 6px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden;
         }
-
-        .card-face img { width: 100%; height: 88%; object-fit: cover; }
+        .card-face img { width: 100%; height: 85%; object-fit: cover; }
         .caption { 
-            height: 12%; display: flex; align-items: center; justify-content: center;
-            background: var(--van-gogh-blue); color: var(--vintage-gold);
-            font-size: 1.4rem; font-weight: bold;
+            height: 15%; display: flex; align-items: center; justify-content: center;
+            background: var(--van-gogh-blue); color: var(--vintage-gold); font-weight: bold;
         }
-
         .flip-card-back { transform: rotateY(180deg); border-color: var(--vintage-gold); }
-        .back-info { background: var(--deep-night) !important; color: #fff !important; }
 
-        /* صندوق المعلومات */
         .info-text {
-            background: rgba(255, 255, 255, 0.9); padding: 40px; margin: 40px 0;
-            border-left: 15px solid var(--van-gogh-blue); font-size: 1.5rem;
-            line-height: 2; border-radius: 0 20px 20px 0;
+            background: rgba(255, 255, 255, 0.8); padding: 25px; margin: 30px 0;
+            border-right: 10px solid var(--van-gogh-blue); font-size: 1.3rem;
+            line-height: 1.8; border-radius: 10px; text-align: right;
         }
 
-        /* قسم الخاتمة المعدل */
-        .about-me {
-            background: var(--van-gogh-blue); color: #fff; padding: 100px 0;
-            text-align: center; border-top: 10px solid var(--vintage-gold);
+        /* قسم الخاتمة وصورة يمنى */
+        .about-section {
+            background: var(--van-gogh-blue); color: #fff; padding: 80px 20px;
+            margin-top: 100px; border-top: 8px solid var(--vintage-gold);
         }
-        .my-pic-container {
-            width: 250px; height: 250px; /* دائرة Portrait متناسبة */
-            margin: auto; border: 8px solid var(--vintage-gold);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5); 
-            overflow: hidden;
-            border-radius: 50%; /* شكل الدائرة */
+        .my-pic {
+            width: 220px; height: 220px; border-radius: 50%;
+            border: 6px solid var(--vintage-gold); object-fit: cover;
+            margin: 0 auto 20px; display: block;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5);
         }
-        .my-pic-container img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .my-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem; color: #fff; margin-top: 20px; font-weight: bold;
+        .my-name { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--vintage-gold); margin: 10px 0; }
+        .thank-you-msg {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem;
+            max-width: 700px; margin: 20px auto; line-height: 1.6; font-style: italic;
         }
 
-        .thank-you {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem; margin: 30px auto 0; font-style: italic; 
-            color: var(--vintage-gold); max-width: 600px;
-            line-height: 1.6;
-        }
-
-        footer { background: var(--deep-night); color: #fff; padding: 30px; text-align: center; }
+        footer { background: #0a1226; color: #777; padding: 20px; font-size: 0.9rem; }
     </style>
 </head>
-<body onclick="startMusic()">
+<body onload="document.getElementById('bgMusic').play()">
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop autoplay>
         <source src="calm.mp3" type="audio/mpeg">
     </audio>
 
@@ -151,87 +130,81 @@
 
     <div class="main-hero">
         <h1>مجلة التصوير الفوتوغرافي</h1>
-        <p>بلمسات فان جوخ والذكاء الاصطناعي</p>
-        <small>(انقر في أي مكان لتفعيل الموسيقى 🎵)</small>
+        <p>تحت إشراف د/ داليا محمد & د/ جهاد محمد</p>
     </div>
 
-    <div class="container" id="gallery-container"></div>
-
-    <div class="about-me">
-        <div class="my-pic-container">
-            <img src="https://i.ibb.co/R52MY2C/pic1.jpg" alt="المصورة">
+    <div class="container" id="main-content">
         </div>
+
+    <div class="about-section">
+        <img src="https://i.ibb.co/R52MY2C/pic1.jpg" class="my-pic" alt="Yomna Essam">
         <div class="my-name">Yomna Essam</div>
-        <div class="thank-you">
-            Thank you for exploring this starry vision.<br>
-            Sharing my creative journey with you is a joy.<br>
-            I hope you found inspiration in this unique<br>
-            harmony of photography, art, and innovation.<br>
-            Your presence here means the world to me.
+        <div class="thank-you-msg">
+            Thank you for exploring my creative vision through this journal.<br>
+            It was a journey of blending reality with the magic of AI art.<br>
+            I truly appreciate your time and interest in my photographic work.<br>
+            May the colors of Van Gogh and the spirit of art inspire you always.<br>
+            With all my gratitude and appreciation.
         </div>
     </div>
 
-    <footer>حقوق الطبع محفوظة للمبدعة © 2026</footer>
+    <footer>جميع الحقوق محفوظة للمبدعة يمنى عصام © 2026</footer>
 
     <script>
-        function startMusic() {
-            document.getElementById('bgMusic').play();
-        }
-
-        // إنشاء الفراشات
-        for(let i=0; i<15; i++) {
+        // توليد الفراشات
+        for(let i=0; i<12; i++){
             let b = document.createElement('div');
             b.className = 'butterfly';
             b.style.left = Math.random() * 100 + "vw";
             b.style.top = Math.random() * 100 + "vh";
-            b.style.animationDelay = Math.random() * 5 + "s";
+            b.style.animationDelay = Math.random() * 8 + "s";
             document.body.appendChild(b);
         }
 
         const data = [
             { 
-                id: 'flower', name: 'النبات والورد', hero: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
-                info: 'بين ضربات الفرشاة وعدسة الكاميرا، تظهر الورود هنا كقصائد ملونة مستوحاة من الطبيعة الصامتة.',
+                name: 'النبات والورد', hero: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
+                info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال.',
                 captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
                 images: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
                 aiImages: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
                 schools: [['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix'], ['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix']]
             },
             { 
-                id: 'buildings', name: 'مباني أثرية', hero: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
-                info: 'الجدران العتيقة التي شهدت على مر التاريخ، نكسوها اليوم بألوان الفن الحديث.',
+                name: 'مباني أثرية', hero: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
+                info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال.',
                 captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
                 images: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
                 aiImages: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
                 schools: [['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Post-Impressionism', 'Van Gogh']]
             },
             { 
-                id: 'sites', name: 'معالم أثرية', hero: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
-                info: 'عظمة البناء الهندسي تتلاقى مع خيال السريالية والرومانسية الحالمة.',
+                name: 'معالم أثرية', hero: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
+                info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي عبر الـ AI.',
                 captions: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
                 images: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
                 aiImages: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
                 schools: [['Surrealism', 'Dali'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix']]
             },
             { 
-                id: 'animal', name: 'الحيوانات', hero: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
-                info: 'روح الكائنات الحية تتجسد في لوحات برية تنبض بالحياة والوحشية الفنية.',
+                name: 'الحيوانات', hero: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
+                info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
                 captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
                 images: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
-                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/Df1crzGm/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
+                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
                 schools: [['Fauvism', 'Matisse'], ['Surrealism', 'Dali'], ['Fauvism', 'Matisse'], ['Romanticism', 'Delacroix']]
             },
             { 
-                id: 'boat', name: 'مراكب', hero: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
-                info: 'رحلة في أعماق البحر، حيث تتمايل المراكب مع انعكاسات الضوء والنجوم.',
+                name: 'مراكب', hero: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
+                info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية بين القوارب التقليدية ورؤية تشكيلية مبتكرة.',
                 captions: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
                 images: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
                 aiImages: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
                 schools: [['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Impressionism', 'Monet'], ['Post-Impressionism', 'Van Gogh']]
             },
             { 
-                id: 'eid', name: 'أجواء العيد', hero: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
-                info: 'خاتمة المسك مع ألوان الفرح والبهجة، قسم العيد الذي يجمع شمل العائلة والسعادة.',
+                name: 'أجواء العيد', hero: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
+                info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة ويحولها إلى لوحات تنبض بالحياة.',
                 captions: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
                 images: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
                 aiImages: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
@@ -241,21 +214,22 @@
 
         const container = document.getElementById('main-content');
         data.forEach(p => {
-            container.innerHTML += `
+            let section = `
                 <div class="section-header">
-                    <img src="${p.hero}" loading="lazy"> <h2>${p.name}</h2>
+                    <img src="${p.hero}">
+                    <h2>${p.name}</h2>
                 </div>
                 <div class="cards-grid">
                     ${[0,1,2,3].map(i => `
                         <div class="flip-card" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="card-face">
-                                    <img src="${p.images[i]}" loading="lazy">
+                                    <img src="${p.images[i]}">
                                     <div class="caption">✨ ${p.captions[i]}</div>
                                 </div>
                                 <div class="card-face flip-card-back">
-                                    <img src="${p.aiImages[i]}" loading="lazy">
-                                    <div class="caption back-info">${p.schools[i][0]} - By: ${p.schools[i][1]}</div>
+                                    <img src="${p.aiImages[i]}">
+                                    <div class="caption">${p.schools[i][0]} - ${p.schools[i][1]}</div>
                                 </div>
                             </div>
                         </div>
@@ -263,6 +237,7 @@
                 </div>
                 <div class="info-text">${p.info}</div>
             `;
+            container.innerHTML += section;
         });
     </script>
 </body>
