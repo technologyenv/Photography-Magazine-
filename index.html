@@ -10,6 +10,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="https://123456images.sirv.com/Yuni/welcome.jpeg">
+  <link rel="preload" as="image" href="https://123456images.sirv.com/Yuni/titelbg.png">
+  <link rel="preload" as="image" href="https://123456images.sirv.com/Yuni/flowerhero.jpeg">
   <style>
     :root {
       --blue-deep: #1b294b;
@@ -324,7 +328,7 @@
   <audio id="bgmusic" loop><source src="calm.mp3" type="audio/mpeg"></audio>
 
   <div id="welcome">
-    <img src="https://123456images.sirv.com/Yuni/welcome.jpeg" alt="مجلة يمنى عصام">
+    <img src="https://123456images.sirv.com/Yuni/welcome.jpeg" alt="مجلة يمنى عصام" loading="eager">
   </div>
   <button id="skip-btn" onclick="hideWelcome()">✦ ادخل للمجلة</button>
 
@@ -406,8 +410,18 @@ const DATA = [
       h: 'https://123456images.sirv.com/Yuni/flowerhero.jpeg',
       info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال.',
       caps: ['همس الطبيعة','عناق الألوان','تفتُّح الحياة','ندى الصباح'],
-      imgs: ['flower1','flower2','flower3','flower4'],
-      ai:   ['flower1ai','flower2ai','flower3ai','flower4ai'],
+      imgs: [
+        'https://123456images.sirv.com/Yuni/flower1.jpeg',
+        'https://123456images.sirv.com/Yuni/flower2.jpeg',
+        'https://123456images.sirv.com/Yuni/flower3.jpeg',
+        'https://123456images.sirv.com/Yuni/flower4.jpeg'
+      ],
+      ai: [
+        'https://123456images.sirv.com/Yuni/flower1ai.jpeg',
+        'https://123456images.sirv.com/Yuni/flower2ai.jpeg',
+        'https://123456images.sirv.com/Yuni/flower3ai.jpeg',
+        'https://123456images.sirv.com/Yuni/flower4ai.jpeg'
+      ],
       sch: [
         'ما بعد الانطباعية<br>الرائد: فان جوخ',
         'الرومانسية<br>الرائد: ديلاكروا',
@@ -421,79 +435,51 @@ const DATA = [
       h: 'https://123456images.sirv.com/Yuni/buildingshero.jpeg',
       info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال.',
       caps: ['عبق الماضي','شموخ الجدران','حكاية حجر','تراث خالد'],
-      imgs: ['buildings1','buildings2','buildings3','buildings4'],
-      ai:   ['buildings1ai','buildings2ai','buildings3ai','buildings4ai'],
+      imgs: [
+        'https://123456images.sirv.com/Yuni/buildings1.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings2.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings3.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings4.jpeg'
+      ],
+      ai: [
+        'https://123456images.sirv.com/Yuni/buildings1ai.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings2ai.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings3ai.jpeg',
+        'https://123456images.sirv.com/Yuni/buildings4ai.jpeg'
+      ],
       sch: [
         'ما بعد الانطباعية<br>الرائد: فان جوخ',
         'الرومانسية<br>الرائد: ديلاكروا',
         'الرومانسية<br>الرائد: ديلاكروا',
         'ما بعد الانطباعية<br>الرائد: فان جوخ'
-      ]
-    },
-    {
-      id: 'sec-sites', emoji: '🗿',
-      t: 'معالم أثرية',
-      h: 'https://123456images.sirv.com/Yuni/siteshero.jpeg',
-      info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي.',
-      caps: ['عظمة الأثر','روح المكان','بصمة التاريخ','خلود الزمان'],
-      imgs: ['sites1','sites2','sites3','sites4'],
-      ai:   ['sites1ai','sites2ai','sites3ai','sites4ai'],
-      sch: [
-        'السريالية<br>الرائد: سلفادور دالي',
-        'الرومانسية<br>الرائد: ديلاكروا',
-        'الرومانسية<br>الرائد: ديلاكروا',
-        'الرومانسية<br>الرائد: ديلاكروا'
       ]
     },
     {
       id: 'sec-animals', emoji: '🦅',
-      t: 'الحيوانات',
+      t: 'الحيوانات والطيور',
       h: 'https://123456images.sirv.com/Yuni/animalhero.jpeg',
-      info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
-      caps: ['نظرة بريئة','ذكاء الطبيعة','جمال وحشي','وفاء صامت'],
-      imgs: ['animal1','animal2','animal3','animal4'],
-      ai:   ['animal1ai','animal2ai','animal3ai','animal4ai'],
+      info: 'اقتناص اللحظة العفوية في حياة الكائنات، حيث يبرز الذكاء الاصطناعي الجوانب الفنية لكل كائن من منظور مدارس الفن العالمي.',
+      caps: ['نظرة بريئة','ذكاء الطبيعة','جمال وحشي','هدوء الطبيعة'],
+      imgs: [
+        'https://123456images.sirv.com/Yuni/animal1.jpeg',
+        'https://123456images.sirv.com/Yuni/animal2.jpeg',
+        'https://123456images.sirv.com/Yuni/animal3.jpeg',
+        'https://123456images.sirv.com/Yuni/animal4.jpeg'
+      ],
+      ai: [
+        'https://123456images.sirv.com/Yuni/animal1ai.jpeg',
+        'https://123456images.sirv.com/Yuni/animal2ai.jpeg',
+        'https://123456images.sirv.com/Yuni/animal3ai.jpeg',
+        'https://123456images.sirv.com/Yuni/animal4ai.jpeg'
+      ],
       sch: [
         'الوحشية<br>الرائد: هنري ماتيس',
         'السريالية<br>الرائد: سلفادور دالي',
         'الوحشية<br>الرائد: هنري ماتيس',
         'الرومانسية<br>الرائد: ديلاكروا'
       ]
-    },
-    {
-      id: 'sec-boats', emoji: '⛵',
-      t: 'مراكب',
-      h: 'https://123456images.sirv.com/Yuni/boathero.jpeg',
-      info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية مبتكرة.',
-      caps: ['هدوء البحر','أشرعة الأمل','انعكاس الضوء','رحلة المدى'],
-      imgs: ['boat1','boat2','boat3','boat4'],
-      ai:   ['boat1ai','boat2ai','boat3ai','boat4ai'],
-      sch: [
-        'الرومانسية<br>الرائد: ديلاكروا',
-        'الرومانسية<br>الرائد: ديلاكروا',
-        'الانطباعية<br>الرائد: كلود مونيه',
-        'ما بعد الانطباعية<br>الرائد: فان جوخ'
-      ]
-    },
-    {
-      id: 'sec-eid', emoji: '🎉',
-      t: 'أجواء العيد',
-      h: 'https://123456images.sirv.com/Yuni/eidhero.jpeg',
-      info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة.',
-      caps: ['بهجة العيد','ضحكة طفل','ألوان الفرح','روح الاحتفال'],
-      imgs: ['eid1','eid2','eid3','eid4'],
-      ai:   ['eid1ai','eid2ai','eid3ai','eid4ai'],
-      sch: [
-        'الرومانسية<br>الرائد: ديلاكروا',
-        'ما بعد الانطباعية<br>الرائد: فان جوخ',
-        'ما بعد الانطباعية<br>الرائد: فان جوخ',
-        'الرومانسية<br>الرائد: ديلاكروا'
-      ]
     }
   ];
-
-  const BASE = 'https://123456images.sirv.com/Yuni/';
-  const SIRV_OPTS = '?format=webp&w=420&h=560&fit=cover';
 
   /* ── BUILD HTML ── */
   const nav = document.getElementById('main-nav');
@@ -503,11 +489,12 @@ const DATA = [
   DATA.forEach((s, si) => {
     const cardsHTML = [0,1,2,3].map(i => `
       <div class="img-card"
-           data-real="${BASE}${s.imgs[i]}.jpeg${SIRV_OPTS}"
-           data-ai="${BASE}${s.ai[i]}.jpeg${SIRV_OPTS}"
+           data-real="${s.imgs[i]}"
+           data-ai="${s.ai[i]}"
            role="button" tabindex="0" aria-label="${s.caps[i]}">
-        <img class="img-real" src="${BASE}${s.imgs[i]}.jpeg${SIRV_OPTS}"
-             alt="${s.caps[i]}" loading="lazy" width="420" height="560">
+        <img class="img-real" src="${s.imgs[i]}" crossorigin="anonymous"
+             alt="${s.caps[i]}" loading="eager" width="420" height="560">
+
         <canvas class="gl-snap"></canvas>
         <div class="card-label"><span class="cap">${s.caps[i]}</span></div>
         <div class="ai-badge">🤖 AI</div>
@@ -539,7 +526,7 @@ const DATA = [
     document.getElementById('bgmusic').play().catch(()=>{});
     setTimeout(()=>ScrollTrigger.refresh(), 600);
   }
-  setTimeout(hideWelcome, 4000);
+  setTimeout(hideWelcome, 3500);
   document.getElementById('welcome').addEventListener('click', hideWelcome);
 
   /* ── PROGRESS BAR ── */
@@ -721,7 +708,7 @@ const DATA = [
     entries.forEach(e=>{
       if(e.isIntersecting){ obs.unobserve(e.target); setTimeout(()=>new CardReveal(e.target),60); }
     });
-  },{rootMargin:'200px'});
+  },{rootMargin:'400px'});
   document.querySelectorAll('.img-card').forEach(c=>lazyObs.observe(c));
 
   // Reset revealed cards when gallery leaves viewport
