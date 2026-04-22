@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yomna Essam | Starry Journal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:italic,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --van-gogh-blue: #1b294b;
             --vintage-gold: #c9a55c;
-            --deep-gold: #b08d4a;
             --paper-bg: #fdfaf6;
-            --welcome-bg: #f4d38e; /* لون مطابق تماماً لصورة الترحيب */
+            --welcome-bg: #f4d38e;
         }
 
-        /* منع الحذف يميناً وتوسيط المحتوى */
         * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0;
@@ -22,148 +20,135 @@
             color: var(--van-gogh-blue);
             font-family: 'Amiri', serif;
             overflow-x: hidden;
-            display: flex; flex-direction: column; align-items: center; /* توسيط مركزي */
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* خلفية الورق القديم */
         .page-wrapper {
             width: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* الفراشات */
-        .butterfly {
-            position: fixed; width: 18px; height: 18px;
-            background: var(--vintage-gold); opacity: 0.4; z-index: 99;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            pointer-events: none; animation: fly 15s infinite linear;
-        }
-        @keyframes fly {
-            0% { transform: translate(-10vw, 100vh) rotate(0deg); }
-            100% { transform: translate(110vw, -10vh) rotate(360deg); }
-        }
-
-        /* واجهة الترحيب - دمج مثالي */
+        /* واجهة الترحيب */
         .welcome-screen {
             width: 100%; height: 100vh;
             background-color: var(--welcome-bg);
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
         }
-        .welcome-screen img {
-            max-width: 100%; max-height: 100%;
-            object-fit: contain;
-        }
+        .welcome-screen img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         /* الهيرو */
         .hero {
-            width: 100%; padding: 100px 20px;
+            width: 100%; padding: 80px 20px;
             background: linear-gradient(rgba(27, 41, 75, 0.85), rgba(27, 41, 75, 0.85)), 
                         url('https://i.ibb.co/rGPGj46W/flowerhero.jpg') center/cover fixed;
             color: var(--vintage-gold); border-bottom: 6px double var(--vintage-gold);
             text-align: center;
         }
-        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(3rem, 8vw, 5rem); margin: 0; }
-        .hero p { font-size: 1.8rem; color: #fff; margin-top: 20px; }
+        .hero h1 { font-family: 'Aref Ruqaa', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin: 0; }
 
-        /* حاوية الأقسام الموسطة */
-        .content-container {
-            width: 90%; max-width: 1200px;
-            margin: 0 auto; padding: 60px 0;
-        }
+        /* الأقسام */
+        .content-container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 40px 0; }
 
         .section-title {
-            margin: 80px 0 40px; position: relative; height: 350px;
-            border-radius: 25px; overflow: hidden; border: 5px solid var(--vintage-gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin: 60px 0 30px; position: relative; height: 300px;
+            border-radius: 20px; overflow: hidden; border: 4px solid var(--vintage-gold);
         }
-        .section-title img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: 0.5s; }
-        .section-title:hover img { transform: scale(1.05); }
+        .section-title img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
         .section-title h2 {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: var(--vintage-gold); font-size: clamp(2.5rem, 6vw, 4rem);
-            font-family: 'Aref Ruqaa', serif; text-shadow: 3px 3px 15px #000; margin: 0;
+            color: var(--vintage-gold); font-size: 3rem; font-family: 'Aref Ruqaa', serif; margin: 0;
         }
 
-        /* الكروت المتناسقة */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px; width: 100%; justify-content: center;
-        }
-
-        .art-card { height: 550px; perspective: 1500px; cursor: pointer; }
-        .art-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        /* الجريد والكروت */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; }
+        .art-card { height: 450px; perspective: 1000px; cursor: pointer; }
+        .art-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
         .art-card.flipped .art-card-inner { transform: rotateY(180deg); }
 
         .card-front, .card-back {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 10px;
-            border: 12px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            overflow: hidden; display: flex; flex-direction: column;
+            backface-visibility: hidden; border-radius: 10px; border: 8px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); overflow: hidden;
         }
         .card-back { transform: rotateY(180deg); border-color: var(--van-gogh-blue); }
-
         .card-front img, .card-back img { width: 100%; height: 85%; object-fit: cover; }
         .card-label {
             height: 15%; display: flex; align-items: center; justify-content: center;
-            background: var(--van-gogh-blue); color: var(--vintage-gold);
-            font-size: 1.2rem; font-weight: bold; padding: 0 10px;
+            background: var(--van-gogh-blue); color: var(--vintage-gold); font-size: 1.1rem;
         }
-        .card-back .card-label { background: var(--deep-gold); color: #fff; }
 
         .info-box {
-            background: #fff; padding: 30px; margin: 40px 0 80px;
-            border-right: 12px solid var(--vintage-gold); border-radius: 5px;
-            font-size: 1.4rem; line-height: 1.9; text-align: justify;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: #fff; padding: 25px; margin: 30px 0 60px;
+            border-right: 8px solid var(--vintage-gold); font-size: 1.2rem; line-height: 1.7;
         }
 
-        /* قسم الخاتمة المحدث بصورتك الجديدة */
+        /* الخاتمة وصورة القلب */
         .final-section {
             width: 100%; background: var(--van-gogh-blue); color: #fff;
-            padding: 100px 20px; text-align: center; border-top: 8px solid var(--vintage-gold);
+            padding: 80px 20px; text-align: center; border-top: 6px solid var(--vintage-gold);
         }
-        .user-new-pic {
-            width: auto; max-width: 300px; /* الحفاظ على الأبعاد الطولية */
-            height: auto; max-height: 450px;
-            margin: 0 auto 30px; border: 8px solid var(--vintage-gold);
-            display: block; object-fit: cover; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        
+        .heart-frame {
+            width: 280px; height: 280px;
+            margin: 0 auto 30px;
+            background: var(--vintage-gold);
+            /* صنع شكل القلب */
+            clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.194 8.94-8.134 12-10.134 12-14.194 0-8.165-10.011-8.967-12-3.568z');
+            transform: scale(12); /* تكبير المسار ليتناسب مع الحاوية */
+            display: flex; align-items: center; justify-content: center;
         }
-        .yomna-name { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--vintage-gold); margin-bottom: 20px; }
-        .thank-you-text {
-            font-family: 'Playfair Display', serif; font-size: 1.5rem;
-            max-width: 800px; margin: 0 auto; line-height: 1.7; font-style: italic;
-            opacity: 0.9;
+
+        /* حاوية بديلة للقلب أسهل في التحكم */
+        .my-heart-pic {
+            width: 250px; height: 250px;
+            margin: 0 auto 30px;
+            position: relative;
+            background-color: var(--vintage-gold);
+            padding: 5px;
+            clip-path: polygon(50% 15%, 80% 0%, 100% 20%, 100% 50%, 50% 95%, 0% 50%, 0% 20%, 20% 0%);
+            /* شكل قلب مبسط واحترافي باستخدام clip-path */
+            clip-path: url(#heart-clip); 
         }
+
+        /* الطريقة الأدق لشكل القلب بالصور */
+        .heart-container {
+            width: 250px; height: 250px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 4px solid var(--vintage-gold);
+            clip-path: path('M125,245 C125,245 20,145 20,80 C20,35 60,15 95,15 C115,15 125,30 125,30 C125,30 135,15 155,15 C190,15 230,35 230,80 C230,145 125,245 125,245 Z');
+        }
+        .heart-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .yomna-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--vintage-gold); margin-bottom: 15px; }
+        .thank-you-text { font-size: 1.4rem; max-width: 700px; margin: 0 auto; line-height: 1.6; font-style: italic; opacity: 0.9; }
 
         footer { background: #070d1a; color: #555; padding: 20px; width: 100%; text-align: center; }
-
     </style>
 </head>
 <body onclick="playMusic()">
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop autoplay>
         <source src="calm.mp3" type="audio/mpeg">
     </audio>
 
     <div class="page-wrapper">
         <div class="welcome-screen">
-            <img src="https://i.ibb.co/202n39wd/welcome.png" alt="Welcome">
+            <img src="https://i.ibb.co/202n39wd/welcome.png" alt="Welcome" loading="lazy">
         </div>
 
         <div class="hero">
             <h1>مجلة التصوير الفوتوغرافي</h1>
             <p>إشراف: د/ داليا محمد & د/ جهاد محمد</p>
-            <small style="color:rgba(255,255,255,0.5)">انقري في أي مكان لتشغيل الموسيقى 🎵</small>
         </div>
 
-        <div class="content-container" id="main-content">
-            </div>
+        <div class="content-container" id="main-content"></div>
 
         <div class="final-section">
-            <img id="newPicPlaceholder" src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" class="user-new-pic" alt="Yomna Essam">
+            <div class="heart-container">
+                <img src="https://i.ibb.co/WN8WV46J/IMG-20260422-135713.jpg" alt="Yomna Essam" loading="lazy">
+            </div>
             <div class="yomna-name">Yomna Essam</div>
             <div class="thank-you-text">
                 Thank you for journeying through my creative lens.<br>
@@ -180,19 +165,7 @@
     <script>
         function playMusic() {
             var audio = document.getElementById('bgMusic');
-            audio.play().catch(function(error) {
-                console.log("Autoplay prevented by browser.");
-            });
-        }
-
-        // تأثير الفراشات
-        for(let i=0; i<15; i++) {
-            let b = document.createElement('div');
-            b.className = 'butterfly';
-            b.style.left = Math.random() * 100 + "vw";
-            b.style.top = Math.random() * 100 + "vh";
-            b.style.animationDelay = Math.random() * 10 + "s";
-            document.body.appendChild(b);
+            audio.play();
         }
 
         const data = [
@@ -202,7 +175,7 @@
                 captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
                 images: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
                 aiImages: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
-                schools: [['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix'], ['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix']]
+                schools: ['Post-Impressionism', 'Romanticism', 'Post-Impressionism', 'Romanticism']
             },
             { 
                 name: 'مباني أثرية', hero: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
@@ -210,7 +183,7 @@
                 captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
                 images: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
                 aiImages: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
-                schools: [['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Post-Impressionism', 'Van Gogh']]
+                schools: ['Post-Impressionism', 'Romanticism', 'Romanticism', 'Post-Impressionism']
             },
             { 
                 name: 'معالم أثرية', hero: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
@@ -218,7 +191,7 @@
                 captions: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
                 images: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
                 aiImages: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
-                schools: [['Surrealism', 'Dali'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix']]
+                schools: ['Surrealism', 'Romanticism', 'Romanticism', 'Romanticism']
             },
             { 
                 name: 'الحيوانات', hero: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
@@ -226,7 +199,7 @@
                 captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
                 images: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
                 aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
-                schools: [['Fauvism', 'Matisse'], ['Surrealism', 'Dali'], ['Fauvism', 'Matisse'], ['Romanticism', 'Delacroix']]
+                schools: ['Fauvism', 'Surrealism', 'Fauvism', 'Romanticism']
             },
             { 
                 name: 'مراكب', hero: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
@@ -234,7 +207,7 @@
                 captions: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
                 images: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
                 aiImages: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
-                schools: [['Romanticism', 'Delacroix'], ['Romanticism', 'Delacroix'], ['Impressionism', 'Monet'], ['Post-Impressionism', 'Van Gogh']]
+                schools: ['Romanticism', 'Romanticism', 'Impressionism', 'Post-Impressionism']
             },
             { 
                 name: 'أجواء العيد', hero: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
@@ -242,7 +215,7 @@
                 captions: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
                 images: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
                 aiImages: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
-                schools: [['Romanticism', 'Delacroix'], ['Post-Impressionism', 'Van Gogh'], ['Post-Impressionism', 'Van Gogh'], ['Romanticism', 'Delacroix']]
+                schools: ['Romanticism', 'Post-Impressionism', 'Post-Impressionism', 'Romanticism']
             }
         ];
 
@@ -250,7 +223,7 @@
         data.forEach(p => {
             container.innerHTML += `
                 <div class="section-title">
-                    <img src="${p.hero}">
+                    <img src="${p.hero}" loading="lazy">
                     <h2>${p.name}</h2>
                 </div>
                 <div class="gallery-grid">
@@ -258,12 +231,12 @@
                         <div class="art-card" onclick="this.classList.toggle('flipped')">
                             <div class="art-card-inner">
                                 <div class="card-front">
-                                    <img src="${p.images[i]}">
+                                    <img src="${p.images[i]}" loading="lazy">
                                     <div class="card-label">✨ ${p.captions[i]}</div>
                                 </div>
                                 <div class="card-face card-back">
-                                    <img src="${p.aiImages[i]}">
-                                    <div class="card-label">${p.schools[i][0]} Style</div>
+                                    <img src="${p.aiImages[i]}" loading="lazy">
+                                    <div class="card-label">${p.schools[i]} Style</div>
                                 </div>
                             </div>
                         </div>
