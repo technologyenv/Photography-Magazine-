@@ -18,14 +18,11 @@
       --cream: #e5d1b1;
       --paper: #fdfaf6;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-text-size-adjust: none; text-size-adjust: none; scroll-behavior: smooth; }
     body {
-      background: var(--paper);
-      color: var(--blue-deep);
-      font-family: 'Amiri', serif;
-      overflow-x: hidden;
+      background: var(--paper); color: var(--blue-deep);
+      font-family: 'Amiri', serif; overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
     img { display: block; max-width: 100%; }
@@ -39,268 +36,234 @@
     }
 
     /* ── PARTICLES ── */
-    #particles {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 0; opacity: .35;
-    }
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .35; }
 
     /* ── WELCOME ── */
     #welcome {
-      position: fixed; inset: 0;
-      background: var(--cream);
+      position: fixed; inset: 0; background: var(--cream);
       display: flex; align-items: center; justify-content: center;
-      z-index: 1000;
-      transition: opacity .9s ease, visibility .9s;
+      z-index: 1000; transition: opacity .9s ease, visibility .9s;
     }
     #welcome.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     #welcome img { width: 100%; height: 100%; object-fit: contain; animation: wpulse 2s ease; }
-    @keyframes wpulse { from { opacity:.5; transform:scale(.97); } to { opacity:1; transform:scale(1); } }
-
+    @keyframes wpulse { from{opacity:.5;transform:scale(.97)} to{opacity:1;transform:scale(1)} }
     #skip-btn {
       position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-      z-index: 1001;
-      background: rgba(27,41,75,.9); color: var(--gold);
-      border: 1.5px solid var(--gold);
-      padding: 13px 34px; border-radius: 100px;
-      font-family: 'Amiri', serif; font-size: 1.05rem;
-      cursor: pointer;
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      white-space: nowrap;
+      z-index: 1001; background: rgba(27,41,75,.9); color: var(--gold);
+      border: 1.5px solid var(--gold); padding: 13px 34px;
+      border-radius: 100px; font-family: 'Amiri', serif; font-size: 1.05rem;
+      cursor: pointer; backdrop-filter: blur(8px); white-space: nowrap;
       animation: bfloat 3s ease-in-out infinite;
       transition: opacity .4s, visibility .4s;
     }
     #skip-btn.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     @keyframes bfloat {
-      0%,100% { box-shadow: 0 4px 18px rgba(201,165,92,.3); }
-      50%      { box-shadow: 0 8px 28px rgba(201,165,92,.55); }
+      0%,100%{box-shadow:0 4px 18px rgba(201,165,92,.3)}
+      50%{box-shadow:0 8px 28px rgba(201,165,92,.55)}
     }
 
     /* ── HERO ── */
     .hero {
-      width: 100%;
-      min-height: clamp(280px, 45vw, 440px);
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; overflow: hidden;
+      width: 100%; min-height: clamp(280px,45vw,440px);
+      position: relative; display: flex; align-items: center;
+      justify-content: center; text-align: center; overflow: hidden;
       border-bottom: 4px double var(--gold);
     }
-    /* Dark overlay on top of blurred hero bg */
     .hero::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,18,40,0.55) 0%,
-        rgba(10,18,40,0.42) 50%,
-        rgba(10,18,40,0.60) 100%
-      );
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom,
+        rgba(10,18,40,.55) 0%, rgba(10,18,40,.40) 50%, rgba(10,18,40,.60) 100%);
       pointer-events: none;
     }
-    .hero-content { z-index: 2; }
     .hero-bg {
       position: absolute; inset: 0;
       background: url('https://123456images.sirv.com/Yuni/titelbg.png') center/cover no-repeat;
-      opacity: 0.55; filter: blur(7px);
-      transform: scale(1.08);
-      /* static background — titelbg.png */
-    }
-    @keyframes hdrift {
-      from { transform: scale(1.08) translate(0,0); }
-      to   { transform: scale(1.12) translate(-1%,1%); }
+      opacity: .55; filter: blur(7px); transform: scale(1.08);
     }
     .hero-content {
-      position: relative; z-index: 2;
-      text-align: center;
-      margin: 0 16px;
-      /* no box — free floating text */
+      position: relative; z-index: 2; text-align: center; margin: 0 16px;
     }
     .hero h1 {
       font-family: 'Aref Ruqaa', serif;
-      font-size: clamp(2.4rem, 8vw, 5rem);
-      color: var(--gold);
+      font-size: clamp(2.4rem,8vw,5rem); color: var(--gold);
       margin-bottom: 12px;
-      text-shadow:
-        0 0 40px rgba(201,165,92,0.9),
-        0 0 80px rgba(201,165,92,0.5),
-        2px 3px 20px rgba(0,0,0,0.8);
-      line-height: 1.15;
-      letter-spacing: 0.03em;
+      text-shadow: 0 0 40px rgba(201,165,92,.9), 0 0 80px rgba(201,165,92,.5), 2px 3px 20px rgba(0,0,0,.8);
+      line-height: 1.15; letter-spacing: .03em;
     }
     .hero p {
       font-family: 'Amiri', serif;
-      font-size: clamp(1rem, 2.8vw, 1.4rem);
-      color: rgba(255,255,255,0.92);
+      font-size: clamp(1rem,2.8vw,1.4rem); color: rgba(255,255,255,.92);
       font-weight: bold;
-      text-shadow: 1px 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.5);
-      letter-spacing: 0.02em;
+      text-shadow: 1px 1px 8px rgba(0,0,0,.7), 0 0 20px rgba(0,0,0,.5);
     }
 
     /* ── STICKY NAV ── */
     .section-nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 7px 8px;
-      padding: 10px 14px;
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 7px 8px; padding: 10px 14px;
       background: var(--blue-deep);
       position: sticky; top: 0; z-index: 50;
       border-bottom: 2px solid var(--gold);
-      max-width: 100%;
     }
     .section-nav a {
       color: var(--gold); text-decoration: none;
-      font-family: 'Aref Ruqaa', serif; font-size: clamp(.75rem, 2vw, .88rem);
+      font-family: 'Aref Ruqaa', serif; font-size: clamp(.75rem,2vw,.88rem);
       padding: 6px 10px; border-radius: 100px;
       border: 1px solid rgba(201,165,92,.35);
-      transition: background .2s, color .2s;
-      white-space: nowrap; text-align: center;
+      transition: background .2s, color .2s; white-space: nowrap; text-align: center;
     }
     .section-nav a.active { background: var(--gold); color: var(--blue-deep); }
 
-    /* ── SECTION STACKING (magazine overlap) ── */
+    /* ── SECTION STACKING ── */
     main { position: relative; }
     .section-wrap {
-      position: relative;
-      margin-top: -130px;
-      clip-path: inset(0);
+      position: relative; margin-top: -130px; clip-path: inset(0);
       scroll-margin-top: 0;
     }
     .section-wrap:first-child { margin-top: 0; }
+    .section-wrap:nth-child(1){z-index:1} .section-wrap:nth-child(2){z-index:2}
+    .section-wrap:nth-child(3){z-index:3} .section-wrap:nth-child(4){z-index:4}
+    .section-wrap:nth-child(5){z-index:5} .section-wrap:nth-child(6){z-index:6}
 
-    /* stacking order — each section slides OVER previous */
-    .section-wrap:nth-child(1) { z-index: 1; }
-    .section-wrap:nth-child(2) { z-index: 2; }
-    .section-wrap:nth-child(3) { z-index: 3; }
-    .section-wrap:nth-child(4) { z-index: 4; }
-    .section-wrap:nth-child(5) { z-index: 5; }
-    .section-wrap:nth-child(6) { z-index: 6; }
-
+    /* ── SECTION BG — Ken Burns per section ── */
     .section-full-bg {
-      position: fixed !important; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
+      position: absolute; inset: 0; background-size: cover;
+      background-position: center; z-index: 0;
+      will-change: transform;
     }
     .section-full-bg::after {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(to bottom,
         rgba(8,15,30,.88) 0%, rgba(8,15,30,.72) 45%, rgba(8,15,30,.88) 100%);
     }
+
+    /* Ken Burns — only active section animates (perf) */
+    @keyframes kb1{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-1.5%,1%)}}
+    @keyframes kb2{0%{transform:scale(1.08) translate(1%,-.5%)}100%{transform:scale(1) translate(-1%,1%)}}
+    @keyframes kb3{0%{transform:scale(1) translate(-1%,1%)}100%{transform:scale(1.1) translate(1.5%,-.5%)}}
+    @keyframes kb4{0%{transform:scale(1.1) translate(.5%,.5%)}100%{transform:scale(1) translate(-1%,-1%)}}
+    @keyframes kb5{0%{transform:scale(1) translate(-.5%,-1%)}100%{transform:scale(1.12) translate(1%,1.5%)}}
+    @keyframes kb6{0%{transform:scale(1.08) translate(1%,1%)}100%{transform:scale(1) translate(-1.5%,0)}}
+    .section-wrap:nth-child(1) .section-full-bg{animation:kb1 22s ease-in-out infinite alternate}
+    .section-wrap:nth-child(2) .section-full-bg{animation:kb2 18s ease-in-out infinite alternate}
+    .section-wrap:nth-child(3) .section-full-bg{animation:kb3 25s ease-in-out infinite alternate}
+    .section-wrap:nth-child(4) .section-full-bg{animation:kb4 20s ease-in-out infinite alternate}
+    .section-wrap:nth-child(5) .section-full-bg{animation:kb5 23s ease-in-out infinite alternate}
+    .section-wrap:nth-child(6) .section-full-bg{animation:kb6 19s ease-in-out infinite alternate}
+
     .section-motion-overlay {
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,165,92,.07), transparent 70%);
       animation: sshmr 9s ease-in-out infinite alternate;
     }
-    @keyframes sshmr { from{opacity:.5} to{opacity:1} }
+    @keyframes sshmr{from{opacity:.5}to{opacity:1}}
 
-    .section-inner {
-      position: relative; z-index: 2;
-      padding-bottom: clamp(40px, 7vw, 80px);
-    }
+    .section-inner { position: relative; z-index: 2; padding-bottom: clamp(40px,7vw,80px); }
 
     /* ── SECTION TITLE ── */
     .section-title-block {
       padding: clamp(160px,20vw,200px) 16px clamp(20px,4vw,36px);
-      text-align: center;
-      will-change: transform;
+      text-align: center; will-change: transform;
     }
     .section-title-block h2 {
       font-family: 'Aref Ruqaa', serif;
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
-      color: var(--gold); line-height: 1.2; margin-bottom: 8px;
+      font-size: clamp(1.8rem,5vw,3.2rem); color: var(--gold); line-height: 1.2; margin-bottom: 8px;
       text-shadow: 0 0 40px rgba(201,165,92,.65), 2px 2px 18px rgba(0,0,0,.8);
     }
-    .section-subtitle {
-      color: rgba(255,255,255,.5);
-      font-size: clamp(.72rem, 2vw, .85rem); font-style: italic;
-    }
+    .section-subtitle { color: rgba(255,255,255,.5); font-size: clamp(.72rem,2vw,.85rem); font-style: italic; }
 
-    /* ── GALLERY — perspective container ── */
+    /* ── GALLERY ── */
     .gallery {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(10px, 2.5vw, 20px);
-      padding: 0 clamp(12px, 4vw, 40px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(10px,2.5vw,20px); padding: 0 clamp(12px,4vw,40px);
       max-width: 860px; margin: 0 auto;
-      perspective: 1100px;
-      perspective-origin: 50% 40%;
+      perspective: 1100px; perspective-origin: 50% 40%;
     }
 
     /* ── IMAGE CARD ── */
     .img-card {
-      position: relative;
-      border-radius: 12px; overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 3 / 4;
+      position: relative; border-radius: 12px; overflow: hidden;
+      cursor: pointer; aspect-ratio: 3/4;
       border: 2px solid rgba(201,165,92,.3);
       box-shadow: 0 6px 24px rgba(0,0,0,.45);
       background: #060e1c;
       -webkit-tap-highlight-color: transparent;
-      /* GSAP owns transforms */
-      will-change: transform, opacity;
-      backface-visibility: hidden;
-      opacity: 0;
+      will-change: transform, opacity; backface-visibility: hidden; opacity: 0;
     }
     .img-card.is-flying {
       box-shadow: 0 24px 64px rgba(0,0,0,.75), 0 8px 22px rgba(0,0,0,.5) !important;
       z-index: 20 !important;
     }
 
-    /* real image — always on top at rest */
-    .img-card .img-real {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      display: block; z-index: 2;
+    /* TAP GLOW */
+    .img-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 12px;
+      opacity: 0; z-index: 8; pointer-events: none; transition: opacity .15s ease;
     }
-    /* WebGL canvas — covers card, hidden until effect starts */
-    .img-card canvas.gl-canvas {
+    .img-card.tapped::after {
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(255,220,120,.38) 0%, rgba(201,165,92,.18) 45%, transparent 75%);
+      opacity: 1; animation: cardGlow .9s ease forwards;
+    }
+    @keyframes cardGlow{0%{opacity:0}20%{opacity:1}60%{opacity:.7}100%{opacity:0}}
+    .img-card.tapped {
+      box-shadow: 0 0 0 2px rgba(201,165,92,.7), 0 0 28px rgba(201,165,92,.45),
+                  0 6px 24px rgba(0,0,0,.5) !important;
+    }
+
+    /* SHARED CANVAS — ONE WebGL renderer for all cards */
+    #shared-gl-canvas {
+      position: absolute; inset: 0;
+      width: 100% !important; height: 100% !important;
+      pointer-events: none; display: none;
+    }
+    /* Per-card result canvas (snapshot after render) */
+    .img-card canvas.gl-snap {
       position: absolute; inset: 0;
       width: 100% !important; height: 100% !important;
       z-index: 3; display: block; pointer-events: none;
       opacity: 0; transition: opacity .08s ease;
     }
-    .img-card.gl-active canvas.gl-canvas { opacity: 1; }
+    .img-card.gl-active canvas.gl-snap { opacity: 1; }
 
-    /* card labels */
+    .img-card .img-real {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2;
+    }
     .card-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 5;
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
       background: linear-gradient(to top, rgba(8,15,30,.92) 0%, transparent 100%);
-      padding: clamp(28px,5vw,38px) 10px 9px;
-      pointer-events: none;
+      padding: clamp(28px,5vw,38px) 10px 9px; pointer-events: none;
     }
     .card-label .cap {
-      color: var(--gold);
-      font-size: clamp(.78rem, 2.2vw, .95rem);
-      font-family: 'Aref Ruqaa', serif;
-      text-shadow: 0 1px 4px rgba(0,0,0,.8);
+      color: var(--gold); font-size: clamp(.78rem,2.2vw,.95rem);
+      font-family: 'Aref Ruqaa', serif; text-shadow: 0 1px 4px rgba(0,0,0,.8);
     }
     .ai-badge {
       position: absolute; top: 9px; right: 9px; z-index: 6;
-      background: linear-gradient(135deg, rgba(100,50,220,.88), rgba(201,165,92,.88));
-      color: #fff; font-size: clamp(.65rem,1.8vw,.78rem);
-      padding: 3px 9px; border-radius: 100px;
-      font-family: 'Amiri', serif;
-      opacity: 0; transition: opacity .4s; pointer-events: none;
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      background: linear-gradient(135deg,rgba(100,50,220,.88),rgba(201,165,92,.88));
+      color: #fff; font-size: clamp(.65rem,1.8vw,.78rem); padding: 3px 9px; border-radius: 100px;
+      font-family: 'Amiri', serif; opacity: 0; transition: opacity .4s; pointer-events: none;
+      backdrop-filter: blur(4px);
     }
     .img-card.is-revealed .ai-badge { opacity: 1; }
     .school-overlay {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 6;
-      padding: 10px;
-      background: linear-gradient(to bottom, rgba(8,15,30,.88) 0%, transparent 100%);
+      position: absolute; top: 0; left: 0; right: 0; z-index: 6; padding: 10px;
+      background: linear-gradient(to bottom,rgba(8,15,30,.88) 0%,transparent 100%);
       opacity: 0; transition: opacity .4s; pointer-events: none;
     }
     .school-overlay p {
-      color: rgba(255,255,255,.88);
-      font-size: clamp(.65rem,1.8vw,.78rem); line-height: 1.5; text-align: center;
+      color: rgba(255,255,255,.88); font-size: clamp(.65rem,1.8vw,.78rem);
+      line-height: 1.5; text-align: center;
     }
     .img-card.is-revealed .school-overlay { opacity: 1; }
     .tap-hint {
       position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
-      z-index: 6; color: rgba(255,255,255,.45);
-      font-size: clamp(.65rem,1.8vw,.75rem); white-space: nowrap;
-      pointer-events: none; animation: tblink 2.5s ease-in-out infinite;
+      z-index: 6; color: rgba(255,255,255,.45); font-size: clamp(.65rem,1.8vw,.75rem);
+      white-space: nowrap; pointer-events: none; animation: tblink 2.5s ease-in-out infinite;
     }
     .img-card.is-revealed .tap-hint { opacity: 0; }
-    @keyframes tblink { 0%,100%{opacity:.45} 50%{opacity:.15} }
+    @keyframes tblink{0%,100%{opacity:.45}50%{opacity:.15}}
     .card-loading {
       position: absolute; inset: 0; z-index: 7;
       display: flex; align-items: center; justify-content: center;
@@ -309,126 +272,46 @@
     .card-loading.active { opacity: 1; }
     .spinner {
       width: 26px; height: 26px; border-radius: 50%;
-      border: 2.5px solid rgba(201,165,92,.2);
-      border-top-color: var(--gold);
+      border: 2.5px solid rgba(201,165,92,.2); border-top-color: var(--gold);
       animation: spin .7s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-
-    /* ── TAP GLOW EFFECT ── */
-    .img-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 12px;
-      background: radial-gradient(ellipse at 50% 50%,
-        rgba(201,165,92,0) 0%,
-        rgba(201,165,92,0) 100%);
-      opacity: 0;
-      z-index: 8;
-      pointer-events: none;
-      transition: opacity 0.15s ease;
-    }
-    .img-card.tapped::after {
-      background: radial-gradient(ellipse at 50% 50%,
-        rgba(255,220,120,0.38) 0%,
-        rgba(201,165,92,0.18) 45%,
-        transparent 75%);
-      opacity: 1;
-      animation: cardGlow 0.9s ease forwards;
-    }
-    @keyframes cardGlow {
-      0%   { opacity: 0;    box-shadow: none; }
-      20%  { opacity: 1; }
-      60%  { opacity: 0.7; }
-      100% { opacity: 0; }
-    }
-    .img-card.tapped {
-      box-shadow: 0 0 0 2px rgba(201,165,92,.7),
-                  0 0 28px rgba(201,165,92,.45),
-                  0 6px 24px rgba(0,0,0,.5) !important;
-      transition: box-shadow 0.2s ease;
-    }
-
-    /* ── KEN BURNS — per-section background motion ── */
-    @keyframes kb1 {
-      0%   { transform: scale(1.0)  translate(0%,   0%); }
-      100% { transform: scale(1.12) translate(-1.5%, 1%); }
-    }
-    @keyframes kb2 {
-      0%   { transform: scale(1.08) translate(1%, -0.5%); }
-      100% { transform: scale(1.0)  translate(-1%,  1%); }
-    }
-    @keyframes kb3 {
-      0%   { transform: scale(1.0)  translate(-1%, 1%); }
-      100% { transform: scale(1.1)  translate(1.5%, -0.5%); }
-    }
-    @keyframes kb4 {
-      0%   { transform: scale(1.1)  translate(0.5%, 0.5%); }
-      100% { transform: scale(1.0)  translate(-1%,  -1%); }
-    }
-    @keyframes kb5 {
-      0%   { transform: scale(1.0)  translate(-0.5%, -1%); }
-      100% { transform: scale(1.12) translate(1%,    1.5%); }
-    }
-    @keyframes kb6 {
-      0%   { transform: scale(1.08) translate(1%, 1%); }
-      100% { transform: scale(1.0)  translate(-1.5%, 0%); }
-    }
-
-    .section-wrap:nth-child(1) .section-full-bg { animation: kb1 22s ease-in-out infinite alternate; }
-    .section-wrap:nth-child(2) .section-full-bg { animation: kb2 18s ease-in-out infinite alternate; }
-    .section-wrap:nth-child(3) .section-full-bg { animation: kb3 25s ease-in-out infinite alternate; }
-    .section-wrap:nth-child(4) .section-full-bg { animation: kb4 20s ease-in-out infinite alternate; }
-    .section-wrap:nth-child(5) .section-full-bg { animation: kb5 23s ease-in-out infinite alternate; }
-    .section-wrap:nth-child(6) .section-full-bg { animation: kb6 19s ease-in-out infinite alternate; }
     /* ── SECTION DESC ── */
     .section-desc {
       margin: clamp(14px,3vw,22px) clamp(14px,5vw,44px) 0;
       padding: 13px clamp(13px,3.5vw,20px);
-      background: rgba(255,255,255,.06);
-      border-right: 5px solid var(--gold);
-      border-radius: 0 8px 8px 0;
-      color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.06); border-right: 5px solid var(--gold);
+      border-radius: 0 8px 8px 0; color: rgba(255,255,255,.82);
       font-size: clamp(.95rem,2.5vw,1.1rem); line-height: 1.85;
     }
 
     /* ── FOOTER ── */
     .footer-section {
       width: 100%; background: var(--blue-deep);
-      padding: clamp(44px,8vw,76px) 16px;
-      text-align: center; border-top: 4px solid var(--gold);
-      position: relative; z-index: 10;
+      padding: clamp(44px,8vw,76px) 16px; text-align: center;
+      border-top: 4px solid var(--gold); position: relative; z-index: 10;
     }
     .profile-circle {
       width: clamp(140px,32vw,200px); height: clamp(140px,32vw,200px);
       border-radius: 50%; border: 5px solid var(--gold); object-fit: cover;
       margin: 0 auto 22px; display: block;
-      box-shadow: 0 0 36px rgba(201,165,92,.4);
-      cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
-                  box-shadow 0.45s ease;
-      will-change: transform, box-shadow;
+      box-shadow: 0 0 36px rgba(201,165,92,.4); cursor: pointer;
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s ease;
     }
-    /* scroll-in: subtle pulse starts */
-    .profile-circle.in-view {
-      animation: profilePulse 3s ease-in-out infinite;
-    }
-    /* tap/hover: strong glow boost */
+    .profile-circle.in-view { animation: profilePulse 3s ease-in-out infinite; }
     .profile-circle:hover,
-    .profile-circle:active,
     .profile-circle.tapped {
       transform: scale(1.06);
-      box-shadow:
-        0 0 0 4px rgba(201,165,92,.5),
-        0 0 40px rgba(201,165,92,.75),
-        0 0 80px rgba(201,165,92,.45),
-        0 0 120px rgba(201,165,92,.2) !important;
+      box-shadow: 0 0 0 4px rgba(201,165,92,.5),
+                  0 0 40px rgba(201,165,92,.75),
+                  0 0 80px rgba(201,165,92,.45),
+                  0 0 120px rgba(201,165,92,.2) !important;
       animation: none !important;
     }
-    @keyframes profilePulse {
-      0%,100% { box-shadow: 0 0 30px rgba(201,165,92,.35), 0 0 60px rgba(201,165,92,.15); }
-      50%      { box-shadow: 0 0 50px rgba(201,165,92,.6),  0 0 90px rgba(201,165,92,.3); }
+    @keyframes profilePulse{
+      0%,100%{box-shadow:0 0 30px rgba(201,165,92,.35),0 0 60px rgba(201,165,92,.15)}
+      50%{box-shadow:0 0 50px rgba(201,165,92,.6),0 0 90px rgba(201,165,92,.3)}
     }
     .yomna-title { font-size: clamp(1.4rem,4vw,2.4rem); color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 14px; }
     .thanks { font-size: clamp(.9rem,2.5vw,1.05rem); line-height: 2; color: rgba(201,176,140,.75); max-width: 48ch; margin: 0 auto; }
@@ -436,18 +319,15 @@
   </style>
 </head>
 <body>
-
   <div id="progress-bar"></div>
   <canvas id="particles"></canvas>
   <audio id="bgmusic" loop><source src="calm.mp3" type="audio/mpeg"></audio>
 
-  <!-- Welcome -->
   <div id="welcome">
     <img src="https://123456images.sirv.com/Yuni/welcome.jpeg" alt="مجلة يمنى عصام">
   </div>
   <button id="skip-btn" onclick="hideWelcome()">✦ ادخل للمجلة</button>
 
-  <!-- Hero -->
   <header class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-content">
@@ -456,48 +336,33 @@
     </div>
   </header>
 
-  <!-- Nav -->
   <nav class="section-nav" id="main-nav"></nav>
-
   <main id="main-content"></main>
 
-  <!-- Footer -->
   <div class="footer-section">
-    <img src="https://123456images.sirv.com/Yuni/pic1.jpeg" class="profile-circle" alt="Yomna Essam" loading="lazy">
+    <img src="https://123456images.sirv.com/Yuni/pic1.jpeg" class="profile-circle" alt="Yomna Essam" loading="lazy" width="200" height="200">
     <div class="yomna-title">Yomna Essam</div>
-    <div class="thanks">
-      <i>Thank you for exploring my creative vision through this journal. It was a journey of blending reality with the magic of AI art. I truly appreciate your time and interest in my photographic work. With all my gratitude and appreciation.</i>
-    </div>
+    <div class="thanks"><i>Thank you for exploring my creative vision through this journal. It was a journey of blending reality with the magic of AI art. I truly appreciate your time and interest in my photographic work. With all my gratitude and appreciation.</i></div>
   </div>
   <footer><small>© 2026 Yomna Essam — Faculty of Specific Education</small></footer>
 
-  <!-- ── VERTEX SHADER ── -->
+  <!-- SHADERS -->
   <script id="vs" type="x-shader/x-vertex">
     varying vec2 vUv;
-    void main(){
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
+    void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }
   </script>
-
-  <!-- ── FRAGMENT SHADER — Perlin dissolve + aspect-correct cover UV ── -->
   <script id="fs" type="x-shader/x-fragment">
-    uniform sampler2D uReal;
-    uniform sampler2D uAI;
-    uniform float uProgress;
-    uniform float uTime;
-    uniform vec3  uAspect; /* x=canvasAR, y=realAR, z=aiAR */
+    uniform sampler2D uReal; uniform sampler2D uAI;
+    uniform float uProgress; uniform float uTime;
+    uniform vec3 uAspect;
     varying vec2 vUv;
-
-    vec2 coverUV(vec2 uv, float canvasAR, float texAR){
-      vec2 scale = vec2(1.0);
-      if(canvasAR > texAR){ scale.y = texAR / canvasAR; }
-      else                 { scale.x = canvasAR / texAR; }
-      return (uv - 0.5) * scale + 0.5;
+    vec2 coverUV(vec2 uv,float cAR,float tAR){
+      vec2 s=vec2(1.0);
+      if(cAR>tAR) s.y=tAR/cAR; else s.x=cAR/tAR;
+      return (uv-.5)*s+.5;
     }
-
-    vec4 p4(vec4 x){ return mod(((x*34.0)+1.0)*x,289.0); }
-    vec2 f2(vec2 t){ return t*t*t*(t*(t*6.0-15.0)+10.0); }
+    vec4 p4(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}
+    vec2 f2(vec2 t){return t*t*t*(t*(t*6.0-15.0)+10.0);}
     float noise2d(vec2 P){
       vec4 Pi=floor(P.xyxy)+vec4(0,0,1,1);
       vec4 Pf=fract(P.xyxy)-vec4(0,0,1,1);
@@ -505,44 +370,36 @@
       vec4 ix=Pi.xzxz,iy=Pi.yyww,fx=Pf.xzxz,fy=Pf.yyww;
       vec4 i=p4(p4(ix)+iy);
       vec4 gx=2.0*fract(i*0.0243902439)-1.0;
-      vec4 gy=abs(gx)-0.5;
-      vec4 tx=floor(gx+0.5); gx=gx-tx;
+      vec4 gy=abs(gx)-.5;
+      vec4 tx=floor(gx+.5); gx=gx-tx;
       vec2 g00=vec2(gx.x,gy.x),g10=vec2(gx.y,gy.y),g01=vec2(gx.z,gy.z),g11=vec2(gx.w,gy.w);
-      vec4 n=1.79284291-0.85373472*vec4(dot(g00,g00),dot(g01,g01),dot(g10,g10),dot(g11,g11));
+      vec4 n=1.79284291-.85373472*vec4(dot(g00,g00),dot(g01,g01),dot(g10,g10),dot(g11,g11));
       g00*=n.x;g01*=n.y;g10*=n.z;g11*=n.w;
       float n00=dot(g00,vec2(fx.x,fy.x)),n10=dot(g10,vec2(fx.y,fy.y));
       float n01=dot(g01,vec2(fx.z,fy.z)),n11=dot(g11,vec2(fx.w,fy.w));
       vec2 fade=f2(Pf.xy);
       return 2.3*mix(mix(n00,n01,fade.y),mix(n10,n11,fade.y),fade.x);
     }
-
     void main(){
-      vec2 uvR = coverUV(vUv, uAspect.x, uAspect.y);
-      vec2 uvA = coverUV(vUv, uAspect.x, uAspect.z);
-
-      float n  = noise2d(vUv*3.8 + vec2(uTime*.15,uTime*.11));
-             n += noise2d(vUv*7.2 - vec2(uTime*.09,uTime*.13))*.45;
-             n  = clamp(n*.5+.5, 0.0, 1.0);
-
-      float edge = 0.22;
-      float thr  = (1.0+edge) - uProgress*(1.0+2.0*edge);
-      float mask = smoothstep(thr-edge, thr+edge, n);
-      float rim  = clamp(smoothstep(thr-edge*.35,thr,n)-smoothstep(thr,thr+edge*.35,n),0.0,1.0);
-
-      vec4 real = texture2D(uReal, uvR);
-      vec4 ai   = texture2D(uAI,   uvA);
-      real.rgb *= 1.0 - uProgress*.45;
-      vec4 res  = mix(real, ai, mask);
-      res.rgb  += vec3(.79,.65,.36)*rim*.85;
-      gl_FragColor = res;
+      vec2 uvR=coverUV(vUv,uAspect.x,uAspect.y);
+      vec2 uvA=coverUV(vUv,uAspect.x,uAspect.z);
+      float n=noise2d(vUv*3.8+vec2(uTime*.15,uTime*.11));
+      n+=noise2d(vUv*7.2-vec2(uTime*.09,uTime*.13))*.45;
+      n=clamp(n*.5+.5,0.0,1.0);
+      float edge=.22; float thr=(1.0+edge)-uProgress*(1.0+2.0*edge);
+      float mask=smoothstep(thr-edge,thr+edge,n);
+      float rim=clamp(smoothstep(thr-edge*.35,thr,n)-smoothstep(thr,thr+edge*.35,n),0.0,1.0);
+      vec4 real=texture2D(uReal,uvR); vec4 ai=texture2D(uAI,uvA);
+      real.rgb*=1.0-uProgress*.45;
+      vec4 res=mix(real,ai,mask);
+      res.rgb+=vec3(.79,.65,.36)*rim*.85;
+      gl_FragColor=res;
     }
   </script>
 
   <script>
-  /* ════════════════════════════════════
-     DATA
-  ════════════════════════════════════ */
-  const DATA = [
+  /* ── DATA ── */
+const DATA = [
     {
       id: 'sec-flowers', emoji: '🌸',
       t: 'النبات والورد',
@@ -636,389 +493,218 @@
   ];
 
   const BASE = 'https://123456images.sirv.com/Yuni/';
+  const SIRV_OPTS = '?format=webp&w=420&h=560&fit=cover';
 
-  /* ════════════════════════════════════
-     BUILD HTML
-  ════════════════════════════════════ */
-  // Nav
+  /* ── BUILD HTML ── */
   const nav = document.getElementById('main-nav');
-  DATA.forEach(s => {
-    nav.innerHTML += `<a href="#${s.id}">${s.emoji} ${s.t}</a>`;
-  });
+  DATA.forEach(s => { nav.innerHTML += `<a href="#${s.id}">${s.emoji} ${s.t}</a>`; });
 
-  // Sections
   const main = document.getElementById('main-content');
   DATA.forEach((s, si) => {
     const cardsHTML = [0,1,2,3].map(i => `
       <div class="img-card"
-           data-real="${BASE}${s.imgs[i]}.jpeg"
-           data-ai="${BASE}${s.ai[i]}.jpeg"
-           role="button" tabindex="0"
-           aria-label="${s.caps[i]} — اضغط لكشف نسخة AI">
-        <img class="img-real" src="${BASE}${s.imgs[i]}.jpeg" alt="${s.caps[i]}" loading="lazy">
+           data-real="${BASE}${s.imgs[i]}.jpeg${SIRV_OPTS}"
+           data-ai="${BASE}${s.ai[i]}.jpeg${SIRV_OPTS}"
+           role="button" tabindex="0" aria-label="${s.caps[i]}">
+        <img class="img-real" src="${BASE}${s.imgs[i]}.jpeg${SIRV_OPTS}"
+             alt="${s.caps[i]}" loading="lazy" width="420" height="560">
+        <canvas class="gl-snap"></canvas>
         <div class="card-label"><span class="cap">${s.caps[i]}</span></div>
         <div class="ai-badge">🤖 AI</div>
         <div class="school-overlay"><p>${s.sch[i]}</p></div>
         <div class="card-loading"><div class="spinner"></div></div>
         <span class="tap-hint">اضغط 👆</span>
-      </div>
-    `).join('');
+      </div>`).join('');
 
     main.innerHTML += `
       <section class="section-wrap" id="${s.id}">
         <div class="section-full-bg" style="background-image:url('${s.h}')"></div>
-        <div class="section-motion-overlay" aria-hidden="true" style="animation-delay:-${si*1.5}s"></div>
+        <div class="section-motion-overlay" style="animation-delay:-${si*1.5}s"></div>
         <div class="section-inner">
-          <div class="section-title-block">
-            <h2>${s.t}</h2>
+          <div class="section-title-block"><h2>${s.t}</h2>
             <p class="section-subtitle">اضغط على الصورة لكشف النسخة الفنية بالذكاء الاصطناعي</p>
           </div>
           <div class="gallery">${cardsHTML}</div>
           <p class="section-desc">${s.info}</p>
         </div>
-      </section>
-    `;
+      </section>`;
   });
 
-  /* ════════════════════════════════════
-     WELCOME
-  ════════════════════════════════════ */
+  /* ── WELCOME ── */
   let welcomed = false;
   function hideWelcome(){
     if(welcomed) return; welcomed = true;
     document.getElementById('welcome').classList.add('hide');
     document.getElementById('skip-btn').classList.add('hide');
     document.getElementById('bgmusic').play().catch(()=>{});
-    setTimeout(() => ScrollTrigger.refresh(), 600);
+    setTimeout(()=>ScrollTrigger.refresh(), 600);
   }
   setTimeout(hideWelcome, 4000);
   document.getElementById('welcome').addEventListener('click', hideWelcome);
 
-  /* ════════════════════════════════════
-     PROGRESS BAR
-  ════════════════════════════════════ */
+  /* ── PROGRESS BAR ── */
   const pb = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
-    pb.style.width = (h > 0 ? s/h*100 : 0) + '%';
-  }, {passive:true});
+  window.addEventListener('scroll',()=>{
+    const s=window.scrollY, h=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(h>0?s/h*100:0)+'%';
+  },{passive:true});
 
-  /* ════════════════════════════════════
-     ACTIVE NAV
-  ════════════════════════════════════ */
+  /* ── ACTIVE NAV ── */
   const navLinks = document.querySelectorAll('.section-nav a');
-  document.querySelectorAll('.section-wrap').forEach(sec => {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
+  document.querySelectorAll('.section-wrap').forEach(sec=>{
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
         if(e.isIntersecting)
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+e.target.id));
+          navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
       });
-    }, {threshold:.35}).observe(sec);
+    },{threshold:.35}).observe(sec);
   });
 
-  /* nav click fade */
+  /* ── NAV CLICK FADE ── */
   const overlay = document.createElement('div');
-  Object.assign(overlay.style, {position:'fixed',inset:'0',zIndex:'500',background:'#04091a',opacity:'0',pointerEvents:'none',transition:'opacity .36s cubic-bezier(0.4,0,0.2,1)'});
+  Object.assign(overlay.style,{position:'fixed',inset:'0',zIndex:'500',background:'#04091a',opacity:'0',pointerEvents:'none',transition:'opacity .36s cubic-bezier(0.4,0,0.2,1)'});
   document.body.appendChild(overlay);
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
+  navLinks.forEach(link=>{
+    link.addEventListener('click',e=>{
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
+      const target=document.querySelector(link.getAttribute('href'));
       if(!target) return;
-      overlay.style.pointerEvents = 'all';
-      overlay.style.opacity = '.75';
-      setTimeout(() => {
-        target.scrollIntoView({behavior:'instant', block:'start'});
-        setTimeout(() => { overlay.style.opacity='0'; overlay.style.pointerEvents='none'; }, 80);
-      }, 330);
+      overlay.style.pointerEvents='all'; overlay.style.opacity='.75';
+      setTimeout(()=>{
+        target.scrollIntoView({behavior:'instant',block:'start'});
+        setTimeout(()=>{ overlay.style.opacity='0'; overlay.style.pointerEvents='none'; },80);
+      },330);
     });
   });
 
-  /* ════════════════════════════════════
-     FLYING PAPER — GSAP ScrollTrigger
-  ════════════════════════════════════ */
-  gsap.registerPlugin(ScrollTrigger);
-
-  function seededRand(seed) {
-    const x = Math.sin(seed + 1) * 43758.5453123;
-    return x - Math.floor(x);
-  }
-  function sr(seed, min, max) { return min + seededRand(seed) * (max - min); }
-  function srSign(seed)        { return seededRand(seed) > .5 ? 1 : -1; }
-
-  window.addEventListener('load', () => setTimeout(buildFlying, 250));
-
-  function buildFlying(){
-    document.querySelectorAll('.gallery').forEach((gallery, gi) => {
-      const cards = Array.from(gallery.querySelectorAll('.img-card'));
-
-      // Build chaos personality per card (unique random values)
-      const chaos = cards.map((_, ci) => {
-        const s = gi * 100 + ci * 17;
-        return {
-          outRotZ:  sr(s+1,22,52)  * srSign(s+2),
-          outRotX:  sr(s+3,30,70)  * srSign(s+4),
-          outRotY:  sr(s+5,-35,35),
-          outX:     sr(s+6,40,110) * srSign(s+7),
-          outY:     sr(s+8,-160,-80),
-          outScale: sr(s+9,.45,.72),
-          inRotZ:   sr(s+10,18,44) * srSign(s+11),
-          inRotX:   sr(s+12,30,65),
-          inRotY:   sr(s+13,-28,28),
-          inX:      sr(s+14,30,80) * srSign(s+15),
-          inY:      sr(s+16,100,180),
-          inScale:  sr(s+17,.50,.78),
-          dur:      sr(s+18,.65,.9),
-          // small offset within row — feels natural but not staggered visually
-          rowOffset: sr(s+21, 0, 0.08),
-          zPeak:    10 + ci * 3,
-          origX:    sr(s+19,30,70),
-          origY:    sr(s+20,20,80),
-        };
-      });
-
-      // Set initial state — all hidden/scattered
-      cards.forEach((card, ci) => {
-        const c = chaos[ci];
-        gsap.set(card, {
-          opacity:0, y:c.inY, x:c.inX,
-          rotateZ:c.inRotZ, rotateX:c.inRotX, rotateY:c.inRotY,
-          scale:c.inScale,
-          transformOrigin:`${c.origX}% ${c.origY}%`,
-          zIndex:1,
-        });
-      });
-
-      // ── GROUP BY ROW (every 2 cards = 1 row) ──
-      // Use the ROW as the ScrollTrigger anchor, not individual cards.
-      // This ensures both cards in a row enter/leave together.
-      const rows = [];
-      for(let i = 0; i < cards.length; i += 2){
-        rows.push(cards.slice(i, i+2));
-      }
-
-      rows.forEach((rowCards, ri) => {
-        // Use first card of row as trigger anchor
-        const triggerEl = rowCards[0];
-
-        function enterRow(){
-          rowCards.forEach((card, ci) => {
-            const c = chaos[ri*2 + ci];
-            card.classList.add('is-flying');
-            gsap.to(card, {
-              opacity:1, y:0, x:0,
-              rotateZ:0, rotateX:0, rotateY:0, scale:1,
-              zIndex:c.zPeak,
-              duration: c.dur,
-              delay: c.rowOffset,   // tiny unique offset — same visual moment, slightly organic
-              ease:'power4.out',
-              onComplete:() => { card.classList.remove('is-flying'); gsap.set(card,{zIndex:2}); }
-            });
-          });
-        }
-
-        function leaveRowBack(){
-          rowCards.forEach((card, ci) => {
-            const c = chaos[ri*2 + ci];
-            card.classList.add('is-flying');
-            gsap.to(card, {
-              opacity:0, y:c.inY, x:c.inX,
-              rotateZ:c.inRotZ, rotateX:c.inRotX, rotateY:c.inRotY,
-              scale:c.inScale, zIndex:c.zPeak,
-              duration:c.dur*.8, delay:c.rowOffset,
-              ease:'power3.in',
-              onComplete:() => { card.classList.remove('is-flying'); gsap.set(card,{zIndex:1}); }
-            });
-          });
-        }
-
-        function leaveRowTop(){
-          rowCards.forEach((card, ci) => {
-            const c = chaos[ri*2 + ci];
-            card.classList.add('is-flying');
-            gsap.to(card, {
-              opacity:0, y:c.outY, x:c.outX,
-              rotateZ:c.outRotZ, rotateX:c.outRotX, rotateY:c.outRotY,
-              scale:c.outScale, zIndex:c.zPeak+5,
-              duration:c.dur*.7, delay:c.rowOffset,
-              ease:'power3.in',
-              onComplete:() => { card.classList.remove('is-flying'); gsap.set(card,{zIndex:1}); }
-            });
-          });
-        }
-
-        function enterRowFromTop(){
-          rowCards.forEach((card, ci) => {
-            const c = chaos[ri*2 + ci];
-            card.classList.add('is-flying');
-            gsap.to(card, {
-              opacity:1, y:0, x:0,
-              rotateZ:0, rotateX:0, rotateY:0, scale:1,
-              zIndex:c.zPeak,
-              duration:c.dur, delay:c.rowOffset,
-              ease:'power4.out',
-              onComplete:() => { card.classList.remove('is-flying'); gsap.set(card,{zIndex:2}); }
-            });
-          });
-        }
-
-        // ENTER from below — trigger on first card of row
-        ScrollTrigger.create({
-          trigger: triggerEl,
-          start:'top 95%',
-          end:'top 20%',
-          onEnter:     enterRow,
-          onLeaveBack: leaveRowBack,
-        });
-
-        // LEAVE upward
-        ScrollTrigger.create({
-          trigger: triggerEl,
-          start:'top 20%',
-          end:'top -50%',
-          onEnter:     leaveRowTop,
-          onLeaveBack: enterRowFromTop,
-        });
-      });
-    });
-
-    // Title parallax drift
-    document.querySelectorAll('.section-title-block').forEach(block => {
-      gsap.to(block, {
-        yPercent: -20, ease:'none',
-        scrollTrigger:{
-          trigger: block.closest('.section-wrap'),
-          start:'top bottom', end:'bottom top', scrub:2,
-        }
-      });
-    });
-
-    ScrollTrigger.refresh();
-  }
-
-  // Reset revealed cards when gallery leaves viewport
-  document.querySelectorAll('.gallery').forEach(gallery => {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(!e.isIntersecting){
-          gallery.querySelectorAll('.img-card.is-revealed').forEach(card => {
-            card._reveal?.resetToReal();
-          });
-        }
-      });
-    }, {threshold:0}).observe(gallery);
-  });
-
-  /* ════════════════════════════════════
-     THREE.JS SHADER — CardReveal
-  ════════════════════════════════════ */
+  /* ════════════════════════════════════════════════════
+     SHARED WebGL RENDERER — one context for all cards
+     Each card has its own offscreen canvas (gl-snap)
+     Render is done on demand (tap only), not per-frame
+  ════════════════════════════════════════════════════ */
   const VS = document.getElementById('vs').textContent;
   const FS = document.getElementById('fs').textContent;
+
+  // One shared renderer (hidden off-screen)
+  const sharedRenderer = new THREE.WebGLRenderer({
+    alpha:true, antialias:false, powerPreference:'low-power'
+  });
+  sharedRenderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  sharedRenderer.domElement.style.display='none';
+  document.body.appendChild(sharedRenderer.domElement);
+
+  const sharedScene  = new THREE.Scene();
+  const sharedCamera = new THREE.OrthographicCamera(-.5,.5,.5,-.5,.1,10);
+  sharedCamera.position.z=1;
+  const sharedClock  = new THREE.Clock();
+
+  // Shared shader material — swap uniforms per card
+  const sharedMat = new THREE.ShaderMaterial({
+    vertexShader:VS, fragmentShader:FS,
+    uniforms:{
+      uReal:{value:null}, uAI:{value:null},
+      uProgress:{value:0}, uTime:{value:0},
+      uAspect:{value:new THREE.Vector3(1,1,1)},
+    }, transparent:true,
+  });
+  const sharedMesh = new THREE.Mesh(new THREE.PlaneGeometry(1,1), sharedMat);
+  sharedScene.add(sharedMesh);
+
+  // Render card at given size → draw result onto card's snap canvas
+  function renderCard(cardObj){
+    const {w,h,tReal,tAI,progress,snapCtx} = cardObj;
+    sharedRenderer.setSize(w,h,false);
+    const rAR = tReal.image ? tReal.image.naturalWidth/tReal.image.naturalHeight : 1;
+    const aAR = tAI.image   ? tAI.image.naturalWidth/tAI.image.naturalHeight     : 1;
+    sharedMat.uniforms.uReal.value     = tReal;
+    sharedMat.uniforms.uAI.value       = tAI;
+    sharedMat.uniforms.uProgress.value = progress;
+    sharedMat.uniforms.uTime.value     = sharedClock.getElapsedTime();
+    sharedMat.uniforms.uAspect.value.set(w/h, rAR, aAR);
+    sharedRenderer.render(sharedScene, sharedCamera);
+    // Copy result to card's own canvas
+    snapCtx.clearRect(0,0,w,h);
+    snapCtx.drawImage(sharedRenderer.domElement, 0,0);
+  }
 
   class CardReveal {
     constructor(card){
       this.card=card; this.progress=0; this.revealed=false;
-      this.animating=false; this.ready=false;
-      this.raf=0; this.loopRaf=0;
-      this._build(); this._load(); this._events();
-      card._reveal = this;
+      this.animating=false; this.ready=false; this.raf=0;
+      this.snapCanvas=card.querySelector('.gl-snap');
+      this.snapCtx=this.snapCanvas.getContext('2d');
+      this._load(); this._events();
+      card._reveal=this;
+      new ResizeObserver(()=>this._resize()).observe(card);
     }
-    _build(){
-      const W=this.card.clientWidth||300, H=this.card.clientHeight||400;
-      this.renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power'});
-      this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-      this.renderer.setSize(W,H,false);
-      this.renderer.domElement.className='gl-canvas';
-      this.card.appendChild(this.renderer.domElement);
-      this.scene=new THREE.Scene();
-      this.camera=new THREE.OrthographicCamera(-.5,.5,.5,-.5,.1,10);
-      this.camera.position.z=1;
-      this.clock=new THREE.Clock();
-      new ResizeObserver(()=>{
-        const w=this.card.clientWidth,h=this.card.clientHeight;
-        this.renderer.setSize(w,h,false);
-        if(this.mat){
-          const rAR=this.tReal.image?this.tReal.image.naturalWidth/this.tReal.image.naturalHeight:1;
-          const aAR=this.tAI.image  ?this.tAI.image.naturalWidth/this.tAI.image.naturalHeight:1;
-          this.mat.uniforms.uAspect.value.set(w/h,rAR,aAR);
-        }
-      }).observe(this.card);
+    _resize(){
+      const w=this.card.clientWidth, h=this.card.clientHeight;
+      this.snapCanvas.width=w; this.snapCanvas.height=h;
+      this.w=w; this.h=h;
+      if(this.ready && this.revealed) this._drawFrame();
     }
     _load(){
-      const loader=new THREE.TextureLoader(); loader.setCrossOrigin('anonymous');
       const loading=this.card.querySelector('.card-loading');
       if(loading) loading.classList.add('active');
+      const loader=new THREE.TextureLoader(); loader.setCrossOrigin('anonymous');
       let n=0;
-      const done=()=>{ if(++n===2){ if(loading)loading.classList.remove('active'); this._mesh(); } };
-      this.tReal=loader.load(this.card.dataset.real,done,undefined,done);
-      this.tAI  =loader.load(this.card.dataset.ai,  done,undefined,done);
+      const done=()=>{ if(++n===2){ if(loading)loading.classList.remove('active'); this._ready(); } };
+      this.tReal=loader.load(this.card.dataset.real, done, undefined, done);
+      this.tAI  =loader.load(this.card.dataset.ai,   done, undefined, done);
     }
-    _mesh(){
+    _ready(){
       [this.tReal,this.tAI].forEach(t=>{
         t.wrapS=t.wrapT=THREE.ClampToEdgeWrapping;
         t.minFilter=t.magFilter=THREE.LinearFilter;
       });
-      const W=this.card.clientWidth,H=this.card.clientHeight;
-      const rAR=this.tReal.image?this.tReal.image.naturalWidth/this.tReal.image.naturalHeight:1;
-      const aAR=this.tAI.image  ?this.tAI.image.naturalWidth/this.tAI.image.naturalHeight:1;
-      this.mat=new THREE.ShaderMaterial({
-        vertexShader:VS, fragmentShader:FS,
-        uniforms:{
-          uReal:{value:this.tReal}, uAI:{value:this.tAI},
-          uProgress:{value:0}, uTime:{value:0},
-          uAspect:{value:new THREE.Vector3(W/H,rAR,aAR)},
-        }, transparent:true,
-      });
-      this.mesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),this.mat);
-      this.scene.add(this.mesh);
-      this.ready=true; this.progress=0;
-      this._frame();
-      this.card.classList.remove('gl-active');
+      this._resize();
+      this.ready=true;
     }
-    _frame(){
-      if(!this.ready) return;
-      this.mat.uniforms.uTime.value=this.clock.getElapsedTime();
-      this.mat.uniforms.uProgress.value=this.progress;
-      this.renderer.render(this.scene,this.camera);
+    _drawFrame(){
+      renderCard({
+        w:this.w||this.card.clientWidth,
+        h:this.h||this.card.clientHeight,
+        tReal:this.tReal, tAI:this.tAI,
+        progress:this.progress,
+        snapCtx:this.snapCtx,
+      });
     }
     _animate(target){
-      cancelAnimationFrame(this.raf); cancelAnimationFrame(this.loopRaf);
+      cancelAnimationFrame(this.raf);
       this.animating=true;
       const start=this.progress, diff=target-start, dur=1000, t0=performance.now();
       const tick=now=>{
         let t=Math.min((now-t0)/dur,1);
         t=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-        this.progress=start+diff*t; this._frame();
+        this.progress=start+diff*t;
+        this._drawFrame();
         if(now-t0<dur){ this.raf=requestAnimationFrame(tick); }
-        else{ this.progress=target; this.animating=false; this._frame(); if(target>.5) this._loop(); }
+        else{
+          this.progress=target; this.animating=false;
+          this._drawFrame();
+          // If fully back to real — hide snap canvas
+          if(target<.01){ this.card.classList.remove('gl-active'); }
+        }
       };
       this.raf=requestAnimationFrame(tick);
-    }
-    _loop(){
-      if(!this.revealed) return;
-      this._frame(); this.loopRaf=requestAnimationFrame(()=>this._loop());
     }
     toggle(){
       if(!this.ready||this.animating) return;
       this.revealed=!this.revealed;
       this.card.classList.toggle('is-revealed',this.revealed);
-      // glow flash on tap
+      // Tap glow
       this.card.classList.remove('tapped');
-      void this.card.offsetWidth; // reflow
+      void this.card.offsetWidth;
       this.card.classList.add('tapped');
-      setTimeout(()=>this.card.classList.remove('tapped'), 900);
+      setTimeout(()=>this.card.classList.remove('tapped'),900);
       if(this.revealed){ this.card.classList.add('gl-active'); this._animate(1); }
-      else              { this.resetToReal(); }
+      else{ this.card.classList.add('gl-active'); this._animate(0); }
     }
     resetToReal(){
       if(!this.ready) return;
-      cancelAnimationFrame(this.loopRaf);
       this.revealed=false;
       this.card.classList.remove('is-revealed');
-      this.card.classList.add('gl-active');
-      this._animate(0);
-      clearTimeout(this.hideTimer);
-      this.hideTimer=setTimeout(()=>{ if(!this.revealed) this.card.classList.remove('gl-active'); },1050);
+      if(this.progress>.01){ this.card.classList.add('gl-active'); this._animate(0); }
     }
     _events(){
       let moved=false;
@@ -1030,17 +716,134 @@
     }
   }
 
-  // Lazy init WebGL only when card near viewport
-  const lazyObs = new IntersectionObserver((entries,obs)=>{
+  // Lazy-init WebGL only when card near viewport
+  const lazyObs=new IntersectionObserver((entries,obs)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ obs.unobserve(e.target); setTimeout(()=>new CardReveal(e.target),60); }
     });
   },{rootMargin:'200px'});
   document.querySelectorAll('.img-card').forEach(c=>lazyObs.observe(c));
 
+  // Reset revealed cards when gallery leaves viewport
+  document.querySelectorAll('.gallery').forEach(gallery=>{
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting)
+          gallery.querySelectorAll('.img-card.is-revealed').forEach(c=>c._reveal?.resetToReal());
+      });
+    },{threshold:0}).observe(gallery);
+  });
+
   /* ════════════════════════════════════
-     PARTICLES
+     FLYING PAPER — GSAP ScrollTrigger
+     Row-based sync: 2 cards per row trigger together
   ════════════════════════════════════ */
+  gsap.registerPlugin(ScrollTrigger);
+
+  function sr(seed,min,max){ const x=Math.sin(seed+1)*43758.5453123; return min+(x-Math.floor(x))*(max-min); }
+  function srSign(seed){ return (Math.sin(seed+1)*43758.5453123 - Math.floor(Math.sin(seed+1)*43758.5453123)) > .5 ? 1 : -1; }
+
+  window.addEventListener('load',()=>setTimeout(buildFlying,250));
+
+  function buildFlying(){
+    document.querySelectorAll('.gallery').forEach((gallery,gi)=>{
+      const cards=Array.from(gallery.querySelectorAll('.img-card'));
+      const chaos=cards.map((_,ci)=>{
+        const s=gi*100+ci*17;
+        return {
+          outRotZ: sr(s+1,22,52)*srSign(s+2), outRotX: sr(s+3,30,70)*srSign(s+4),
+          outRotY: sr(s+5,-35,35), outX: sr(s+6,40,110)*srSign(s+7),
+          outY: sr(s+8,-160,-80), outScale: sr(s+9,.45,.72),
+          inRotZ: sr(s+10,18,44)*srSign(s+11), inRotX: sr(s+12,30,65),
+          inRotY: sr(s+13,-28,28), inX: sr(s+14,30,80)*srSign(s+15),
+          inY: sr(s+16,100,180), inScale: sr(s+17,.50,.78),
+          dur: sr(s+18,.65,.9), rowOffset: sr(s+21,0,.08),
+          zPeak: 10+ci*3, origX: sr(s+19,30,70), origY: sr(s+20,20,80),
+        };
+      });
+
+      // Initial state
+      cards.forEach((card,ci)=>{
+        const c=chaos[ci];
+        gsap.set(card,{
+          opacity:0, y:c.inY, x:c.inX,
+          rotateZ:c.inRotZ, rotateX:c.inRotX, rotateY:c.inRotY,
+          scale:c.inScale, transformOrigin:`${c.origX}% ${c.origY}%`, zIndex:1,
+        });
+      });
+
+      // Group into rows of 2
+      const rows=[];
+      for(let i=0;i<cards.length;i+=2) rows.push(cards.slice(i,i+2));
+
+      rows.forEach((rowCards,ri)=>{
+        const triggerEl=rowCards[0];
+        const fly=(rowCards,enter,fromTop)=>{
+          rowCards.forEach((card,ci)=>{
+            const c=chaos[ri*2+ci];
+            card.classList.add('is-flying');
+            if(enter){
+              gsap.to(card,{
+                opacity:1,y:0,x:0,rotateZ:0,rotateX:0,rotateY:0,scale:1,
+                zIndex:c.zPeak,duration:c.dur,delay:c.rowOffset,ease:'power4.out',
+                onComplete:()=>{ card.classList.remove('is-flying'); gsap.set(card,{zIndex:2}); }
+              });
+            } else if(fromTop){
+              gsap.to(card,{
+                opacity:0,y:c.outY,x:c.outX,rotateZ:c.outRotZ,rotateX:c.outRotX,rotateY:c.outRotY,
+                scale:c.outScale,zIndex:c.zPeak+5,duration:c.dur*.7,delay:c.rowOffset,ease:'power3.in',
+                onComplete:()=>{ card.classList.remove('is-flying'); gsap.set(card,{zIndex:1}); }
+              });
+            } else {
+              gsap.to(card,{
+                opacity:0,y:c.inY,x:c.inX,rotateZ:c.inRotZ,rotateX:c.inRotX,rotateY:c.inRotY,
+                scale:c.inScale,zIndex:c.zPeak,duration:c.dur*.8,delay:c.rowOffset,ease:'power3.in',
+                onComplete:()=>{ card.classList.remove('is-flying'); gsap.set(card,{zIndex:1}); }
+              });
+            }
+          });
+        };
+
+        ScrollTrigger.create({
+          trigger:triggerEl, start:'top 95%', end:'top 20%',
+          onEnter:     ()=>fly(rowCards,true,false),
+          onLeaveBack: ()=>fly(rowCards,false,false),
+        });
+        ScrollTrigger.create({
+          trigger:triggerEl, start:'top 20%', end:'top -50%',
+          onEnter:     ()=>fly(rowCards,false,true),
+          onLeaveBack: ()=>fly(rowCards,true,false),
+        });
+      });
+    });
+
+    // Title parallax
+    document.querySelectorAll('.section-title-block').forEach(block=>{
+      gsap.to(block,{
+        yPercent:-20, ease:'none',
+        scrollTrigger:{trigger:block.closest('.section-wrap'),start:'top bottom',end:'bottom top',scrub:2}
+      });
+    });
+    ScrollTrigger.refresh();
+  }
+
+  /* ── PROFILE GLOW ── */
+  const profileImg=document.querySelector('.profile-circle');
+  if(profileImg){
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>profileImg.classList.toggle('in-view',e.isIntersecting));
+    },{threshold:.4}).observe(profileImg);
+    let profileTimer;
+    function profileTap(){
+      profileImg.classList.add('tapped');
+      clearTimeout(profileTimer);
+      profileTimer=setTimeout(()=>profileImg.classList.remove('tapped'),1200);
+    }
+    profileImg.addEventListener('click',profileTap);
+    profileImg.addEventListener('touchend',e=>{e.preventDefault();profileTap();},{passive:false});
+  }
+
+  /* ── PARTICLES ── */
   const cvs=document.getElementById('particles');
   const ctx=cvs.getContext('2d');
   const resizeParts=()=>{ cvs.width=innerWidth; cvs.height=innerHeight; };
@@ -1048,7 +851,7 @@
   const pts=Array.from({length:36},()=>({
     x:Math.random()*innerWidth, y:Math.random()*innerHeight,
     r:Math.random()*1.6+.3, dx:(Math.random()-.5)*.28, dy:(Math.random()-.5)*.28,
-    a:Math.random()*.28+.05
+    a:Math.random()*.28+.05,
   }));
   let rafP;
   function drawParts(){
@@ -1064,29 +867,6 @@
   }
   drawParts();
   document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(rafP); else drawParts(); });
-  // ── PROFILE CIRCLE: scroll glow + tap glow ──
-  const profileImg = document.querySelector('.profile-circle');
-  if(profileImg){
-    // Scroll-in observer → start pulse
-    new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        profileImg.classList.toggle('in-view', e.isIntersecting);
-      });
-    }, {threshold: 0.4}).observe(profileImg);
-
-    // Tap → boost glow briefly
-    let profileTapTimer;
-    function profileTap(){
-      profileImg.classList.add('tapped');
-      clearTimeout(profileTapTimer);
-      profileTapTimer = setTimeout(() => {
-        profileImg.classList.remove('tapped');
-      }, 1200);
-    }
-    profileImg.addEventListener('click',     profileTap);
-    profileImg.addEventListener('touchend',  e => { e.preventDefault(); profileTap(); }, {passive:false});
-  }
-
   </script>
 </body>
 </html>
