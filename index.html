@@ -31,23 +31,19 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        #music-control:hover { transform: scale(1.05); background: #b08d4a; }
 
-        /* --- 1. واجهة الترحيب الأساسية (Welcome Screen) --- */
+        /* --- 1. واجهة الترحيب الأساسية --- */
         .full-welcome {
             width: 100%;
             height: 100vh;
-            background: url('welcome.jpg') no-repeat center center;
+            background: url('https://i.ibb.co/202n39wd/welcome.png') no-repeat center center;
             background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* --- 2. الهيرو الرئيسي (Main Hero) --- */
+        /* --- 2. الهيرو الرئيسي --- */
         .welcome-hero {
             height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('welcomehero.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.ibb.co/rGf6xvqV/eidhero.jpg'); /* استخدمت هيرو العيد كخلفية مؤقتة هنا */
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center;
@@ -55,7 +51,7 @@
         .welcome-hero h1 { font-family: 'Amiri', serif; font-size: 4.5rem; margin: 0; text-shadow: 3px 3px 15px rgba(0,0,0,0.6); }
         .welcome-hero p { font-size: 1.8rem; color: var(--accent-gold); margin-top: 15px; font-weight: bold; }
 
-        /* --- الأقسام وصور الهيرو --- */
+        /* --- الأقسام --- */
         .project-section { padding: 80px 8%; position: relative; }
         .section-header {
             height: 300px; display: flex; align-items: center; justify-content: center;
@@ -63,7 +59,6 @@
             position: relative; box-shadow: var(--card-shadow);
         }
         .section-header img { width: 100%; height: 100%; object-fit: cover; position: absolute; filter: brightness(0.45); transition: 0.6s; }
-        .section-header:hover img { transform: scale(1.08); }
         .section-header h2 { position: relative; z-index: 2; color: white; font-family: 'Amiri', serif; font-size: 3.8rem; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
 
         /* --- الكروت --- */
@@ -84,26 +79,16 @@
         .back-info .artist { font-size: 0.8rem; opacity: 0.95; }
         .flip-card-back { transform: rotateY(180deg); border: 2px solid var(--accent-gold); }
 
-        /* --- صندوق المعلومات --- */
         .info-box { background: white; padding: 30px; border-radius: 20px; margin-top: 40px; border-right: 10px solid var(--accent-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); font-size: 1.25rem; line-height: 1.8; }
 
-        /* --- 3. قسم الخاتمة (About & Thank You) --- */
+        /* --- الخاتمة --- */
         .thank-you-section {
             background-color: #fff; padding: 80px 8%; text-align: center;
             display: flex; flex-direction: column; align-items: center;
             border-top: 1px solid #eee;
         }
-        .my-pic {
-            width: 200px; height: 200px; border-radius: 50%;
-            object-fit: cover; margin-bottom: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border: 4px solid var(--accent-gold);
-        }
-        .thank-you-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem; color: var(--primary-text);
-            max-width: 700px; line-height: 1.5; font-style: italic;
-        }
+        .my-pic { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid var(--accent-gold); }
+        .thank-you-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary-text); max-width: 700px; line-height: 1.5; font-style: italic; }
 
         footer { text-align: center; padding: 50px; color: #888; font-size: 0.9rem; background: #f9f9f9; }
     </style>
@@ -125,7 +110,7 @@
     <div id="main-content"></div>
 
     <div class="thank-you-section">
-        <img src="pic1.jpg" alt="My Picture" class="my-pic">
+        <img src="https://i.ibb.co/R52MY2C/pic1.jpg" alt="My Picture" class="my-pic">
         <div class="thank-you-text">
             "Thank you for taking the time to explore my creative journey. <br>
             It means a lot to share my vision and hard work with you. <br>
@@ -150,8 +135,11 @@
 
         const projects = [
             { 
-                id: 'flower', name: 'النبات والورد', info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال.',
+                id: 'flower', name: 'النبات والورد', hero: 'https://i.ibb.co/rGPGj46W/flowerhero.jpg',
+                info: 'تعتبر الزهور لغة الطبيعة الصامتة التي تعبر عن الجمال والتجدد. نبرز هنا سحر الطبيعة بين الواقع والخيال.',
                 captions: ['همس الطبيعة', 'عناق الألوان', 'تفتُّح الحياة', 'ندى الصباح'],
+                images: ['https://i.ibb.co/33NwmTb/flower1.jpg', 'https://i.ibb.co/Z1mkSFWP/flower2.jpg', 'https://i.ibb.co/TQB5Q99/flower3.jpg', 'https://i.ibb.co/G3PN0Mnv/flower4.jpg'],
+                aiImages: ['https://i.ibb.co/mCnP2Q1D/flower1ai.png', 'https://i.ibb.co/LdnVZb0d/flower2ai.png', 'https://i.ibb.co/rN3sNqS/flower3ai.png', 'https://i.ibb.co/ycNkgRLc/flower4ai.png'],
                 schools: [
                     {s: 'Post-Impressionism', r: 'Vincent Van Gogh'},
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
@@ -160,8 +148,11 @@
                 ]
             },
             { 
-                id: 'buildings', name: 'مباني أثرية', info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال.',
+                id: 'buildings', name: 'مباني أثرية', hero: 'https://i.ibb.co/Fbk9S4bN/buildingshero.jpg',
+                info: 'تفاصيل الحجر والنقوش في المباني القديمة تحكي قصصاً من الماضي، نبرزها هنا بأسلوب فني يدمج الواقع بالخيال.',
                 captions: ['عبق الماضي', 'شموخ الجدران', 'حكاية حجر', 'تراث خالد'],
+                images: ['https://i.ibb.co/CKCfGV6P/buildings1.jpg', 'https://i.ibb.co/Jww0zQZD/buildings2.jpg', 'https://i.ibb.co/gMMyDN6k/buildings3.jpg', 'https://i.ibb.co/gMwW254w/buildings4.jpg'],
+                aiImages: ['https://i.ibb.co/SDZjjYWP/buildings1ai.png', 'https://i.ibb.co/tT9SRzsZ/buildings2ai.png', 'https://i.ibb.co/0j8d6Qgs/buildings3ai.png', 'https://i.ibb.co/spxp8LfS/buildings4ai.png'],
                 schools: [
                     {s: 'Post-Impressionism', r: 'Vincent Van Gogh'},
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
@@ -170,8 +161,11 @@
                 ]
             },
             { 
-                id: 'sites', name: 'معالم أثرية', info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي عبر الـ AI.',
+                id: 'sites', name: 'معالم أثرية', hero: 'https://i.ibb.co/1fzKtPRJ/siteshero.jpg',
+                info: 'شموخ التاريخ في المعالم الكبرى، حيث تلتقي زوايا التصوير الهندسي مع مدارس الفن العالمي عبر الـ AI.',
                 captions: ['عظمة الأثر', 'روح المكان', 'بصمة التاريخ', 'خلود الزمان'],
+                images: ['https://i.ibb.co/R40BrzCj/sites1.jpg', 'https://i.ibb.co/C3CWQjGQ/sites2.jpg', 'https://i.ibb.co/JFFpWkdJ/sites3.jpg', 'https://i.ibb.co/6JrVsZJt/sites4.jpg'],
+                aiImages: ['https://i.ibb.co/cK0Kg381/sites1ai.jpg', 'https://i.ibb.co/Rk08GFp8/sites2ai.jpg', 'https://i.ibb.co/k27LykWt/sites3ai.jpg', 'https://i.ibb.co/CKqxd312/sites4ai.jpg'],
                 schools: [
                     {s: 'Surrealism School', r: 'Salvador Dali'},
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
@@ -180,8 +174,11 @@
                 ]
             },
             { 
-                id: 'animal', name: 'الحيوانات', info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
+                id: 'animal', name: 'الحيوانات', hero: 'https://i.ibb.co/mrCH3WTP/animalhero.jpg',
+                info: 'اقتناص اللحظة العفوية هو التحدي الأكبر، حيث يبرز الذكاء الاصطناعي الجانب الفني لكل كائن.',
                 captions: ['نظرة بريئة', 'ذكاء الطبيعة', 'جمال وحشي', 'وفاء صامت'],
+                images: ['https://i.ibb.co/j9tfsY8k/animal1.jpg', 'https://i.ibb.co/Df1crzGm/animal2.jpg', 'https://i.ibb.co/b5bdWzNS/animal3.jpg', 'https://i.ibb.co/v617YCxT/animal4.jpg'],
+                aiImages: ['https://i.ibb.co/8DSjsnNj/animal1ai.png', 'https://i.ibb.co/p6L5vmJ3/animal2ai.png', 'https://i.ibb.co/QF0HCjgn/animal3ai.png', 'https://i.ibb.co/Q35bVQ9Z/animal4ai.png'],
                 schools: [
                     {s: 'Fauvism School', r: 'Henri Matisse'},
                     {s: 'Surrealism School', r: 'Salvador Dali'},
@@ -190,8 +187,11 @@
                 ]
             },
             { 
-                id: 'boat', name: 'مراكب', info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية بين القوارب التقليدية ورؤية تشكيلية مبتكرة.',
+                id: 'boat', name: 'مراكب', hero: 'https://i.ibb.co/ycXJBB9T/boathero.jpg',
+                info: 'انسيابية الحركة فوق الماء وانعكاسات الضوء، رحلة بصرية بين القوارب التقليدية ورؤية تشكيلية مبتكرة.',
                 captions: ['هدوء البحر', 'أشرعة الأمل', 'انعكاس الضوء', 'رحلة المدى'],
+                images: ['https://i.ibb.co/C576Qfsn/boat1.jpg', 'https://i.ibb.co/nMBjVfpt/boat2.jpg', 'https://i.ibb.co/YBXJ4TN5/boat3.jpg', 'https://i.ibb.co/NdfYZFmy/boat4.jpg'],
+                aiImages: ['https://i.ibb.co/5gpJBC2h/boat1ai.png', 'https://i.ibb.co/QjhbVSW5/boat2ai.png', 'https://i.ibb.co/67BtW8xg/boat3ai.png', 'https://i.ibb.co/TCsnmpT/boat4ai.png'],
                 schools: [
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
@@ -200,8 +200,11 @@
                 ]
             },
             { 
-                id: 'eid', name: 'أجواء العيد', info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة ويحولها إلى لوحات تنبض بالحياة.',
+                id: 'eid', name: 'أجواء العيد', hero: 'https://i.ibb.co/rGf6xvqV/eidhero.jpg',
+                info: 'فرحة الأطفال والبهجة في الألوان، قسم يجسد السعادة ويحولها إلى لوحات تنبض بالحياة.',
                 captions: ['بهجة العيد', 'ضحكة طفل', 'ألوان الفرح', 'روح الاحتفال'],
+                images: ['https://i.ibb.co/d4C6scwH/eid1.jpg', 'https://i.ibb.co/Y7V72BxY/eid2.jpg', 'https://i.ibb.co/XZ1hkYbk/eid3.jpg', 'https://i.ibb.co/WWy6fsPK/eid4.jpg'],
+                aiImages: ['https://i.ibb.co/1f7Brp1F/eid1ai.jpg', 'https://i.ibb.co/KchSKNng/eid2ai.jpg', 'https://i.ibb.co/rKBRRqNk/eid3ai.jpg', 'https://i.ibb.co/WW160b7P/eid4ai.jpg'],
                 schools: [
                     {s: 'Romanticism School', r: 'Eugène Delacroix'},
                     {s: 'Post-Impressionism', r: 'Vincent Van Gogh'},
@@ -217,19 +220,19 @@
             let section = `
                 <section class="project-section">
                     <div class="section-header">
-                        <img src="${p.id}hero.jpg" alt="${p.name}">
+                        <img src="${p.hero}" alt="${p.name}">
                         <h2>${p.name}</h2>
                     </div>
                     <div class="cards-grid">
-                        ${[1, 2, 3, 4].map((num, index) => `
+                        ${[0, 1, 2, 3].map(index => `
                             <div class="flip-card" onclick="this.classList.toggle('flipped')">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
-                                        <img src="${p.id}${num}.jpg">
+                                        <img src="${p.images[index]}">
                                         <div class="front-caption">✨ ${p.captions[index]}</div>
                                     </div>
                                     <div class="flip-card-back">
-                                        <img src="${p.id}${num}ai.jpg">
+                                        <img src="${p.aiImages[index]}">
                                         <div class="back-info">
                                             <span class="school">${p.schools[index].s}</span>
                                             <span class="artist">By: ${p.schools[index].r}</span>
